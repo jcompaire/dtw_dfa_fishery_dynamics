@@ -1,0 +1,1042 @@
+
+==============================
+RESPONSE: c1 
+==============================
+
+>> Percentile: 25 
+--------------------------------------
+
+--- LAG: lag_3  ---
+
+Model 1 of 2 
+Eq: 4 
+DE: 30.34  | Max Concurvity: 0  | Term: s(kd25) 
+Backward: "c1 ~ s(kd25, k = 4, bs = \"cr\")" 
+
+percentile: 25; family:quasi(link=identity); lag:03; eq:04; DE:30.34
+original:  c1 ~ s(enso, k = 4, bs = "cr") + s(kd25, k = 4, bs = "cr") 
+backward:  c1 ~ s(kd25, k = 4, bs = "cr") 
+
+Family: quasi 
+Link function: identity 
+
+Formula:
+c1 ~ s(kd25, k = 4, bs = "cr")
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)   
+(Intercept)  -0.3126     0.1090  -2.869  0.00899 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Approximate significance of smooth terms:
+          edf Ref.df     F p-value  
+s(kd25) 1.258  1.466 6.911  0.0144 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+R-sq.(adj) =  0.263   Deviance explained = 30.3%
+-REML = -2.3216  Scale est. = 0.28505   n = 24
+---------- ######### ----------  
+
+----------------------------------------------------
+
+Model 2 of 2 
+Eq: 11 
+DE: 72.34  | Max Concurvity: 0.17  | Term: s(sst25) 
+Backward: "c1 ~ s(sst25, k = 4, bs = \"cr\") + s(kd25, k = 4, bs = \"cr\")" 
+
+percentile: 25; family:quasi(link=identity); lag:03; eq:11; DE:72.34
+original:  c1 ~ s(enso, k = 4, bs = "cr") + s(sst25, k = 4, bs = "cr") +     s(kd25, k = 4, bs = "cr") 
+backward:  c1 ~ s(sst25, k = 4, bs = "cr") + s(kd25, k = 4, bs = "cr") 
+
+Family: quasi 
+Link function: identity 
+
+Formula:
+c1 ~ s(sst25, k = 4, bs = "cr") + s(kd25, k = 4, bs = "cr")
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -0.31264    0.07435  -4.205 0.000502 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Approximate significance of smooth terms:
+           edf Ref.df     F p-value   
+s(sst25) 2.637  2.906 9.527 0.00134 **
+s(kd25)  1.815  2.196 9.056 0.00159 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+R-sq.(adj) =  0.657   Deviance explained = 72.3%
+-REML = -8.4281  Scale est. = 0.13267   n = 24
+
+--- Concurvity (Worst) ---
+    para s(sst25)  s(kd25) 
+    0.00     0.17     0.17 
+---------- ######### ----------  
+
+----------------------------------------------------
+
+--- LAG: lag_4  ---
+
+Model 1 of 1 
+Eq: 4 
+DE: 18.65  | Max Concurvity: 0  | Term: s(kd25) 
+Backward: "c1 ~ s(kd25, k = 4, bs = \"cr\")" 
+
+percentile: 25; family:quasi(link=identity); lag:04; eq:04; DE:18.65
+original:  c1 ~ s(enso, k = 4, bs = "cr") + s(kd25, k = 4, bs = "cr") 
+backward:  c1 ~ s(kd25, k = 4, bs = "cr") 
+
+Family: quasi 
+Link function: identity 
+
+Formula:
+c1 ~ s(kd25, k = 4, bs = "cr")
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)   
+(Intercept)  -0.3540     0.1157  -3.058  0.00597 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Approximate significance of smooth terms:
+        edf Ref.df     F p-value  
+s(kd25)   1      1 4.816  0.0396 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+R-sq.(adj) =  0.148   Deviance explained = 18.7%
+-REML = -1.5459  Scale est. = 0.30812   n = 23
+---------- ######### ----------  
+
+----------------------------------------------------
+
+--- LAG: lag_7  ---
+
+Model 1 of 2 
+Eq: 36 
+DE: 19.93  | Max Concurvity: 0  | Term: s(kd25) 
+Backward: "c1 ~ s(kd25, k = 4, bs = \"cr\")" 
+
+percentile: 25; family:quasi(link=identity); lag:07; eq:36; DE:19.93
+original:  c1 ~ s(sam, k = 4, bs = "cr") + s(kd25, k = 4, bs = "cr") 
+backward:  c1 ~ s(kd25, k = 4, bs = "cr") 
+
+Family: quasi 
+Link function: identity 
+
+Formula:
+c1 ~ s(kd25, k = 4, bs = "cr")
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)   
+(Intercept)  -0.3819     0.1301  -2.935  0.00885 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Approximate significance of smooth terms:
+        edf Ref.df    F p-value  
+s(kd25)   1      1 4.48  0.0485 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+R-sq.(adj) =  0.155   Deviance explained = 19.9%
+-REML = -0.56628  Scale est. = 0.33872   n = 20
+---------- ######### ----------  
+
+----------------------------------------------------
+
+Model 2 of 2 
+Eq: 11 
+DE: 41.46  | Max Concurvity: 0.27  | Term: s(sst25) 
+Backward: "c1 ~ s(sst25, k = 4, bs = \"cr\") + s(kd25, k = 4, bs = \"cr\")" 
+
+percentile: 25; family:quasi(link=identity); lag:07; eq:11; DE:41.46
+original:  c1 ~ s(enso, k = 4, bs = "cr") + s(sst25, k = 4, bs = "cr") +     s(kd25, k = 4, bs = "cr") 
+backward:  c1 ~ s(sst25, k = 4, bs = "cr") + s(kd25, k = 4, bs = "cr") 
+
+Family: quasi 
+Link function: identity 
+
+Formula:
+c1 ~ s(sst25, k = 4, bs = "cr") + s(kd25, k = 4, bs = "cr")
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)   
+(Intercept)  -0.3819     0.1158  -3.297  0.00437 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Approximate significance of smooth terms:
+          edf Ref.df     F p-value  
+s(sst25) 1.00   1.00 5.532  0.0310 *
+s(kd25)  1.39   1.67 4.087  0.0295 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+R-sq.(adj) =   0.33   Deviance explained = 41.5%
+-REML = -2.7194  Scale est. = 0.26838   n = 20
+
+--- Concurvity (Worst) ---
+    para s(sst25)  s(kd25) 
+    0.00     0.27     0.27 
+---------- ######### ----------  
+
+----------------------------------------------------
+
+--- LAG: lag_8  ---
+
+Model 1 of 3 
+Eq: 4 
+DE: 29.24  | Max Concurvity: 0  | Term: s(kd25) 
+Backward: "c1 ~ s(kd25, k = 4, bs = \"cr\")" 
+
+percentile: 25; family:quasi(link=identity); lag:08; eq:04; DE:29.24
+original:  c1 ~ s(enso, k = 4, bs = "cr") + s(kd25, k = 4, bs = "cr") 
+backward:  c1 ~ s(kd25, k = 4, bs = "cr") 
+
+Family: quasi 
+Link function: identity 
+
+Formula:
+c1 ~ s(kd25, k = 4, bs = "cr")
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)   
+(Intercept)  -0.3861     0.1291  -2.991  0.00821 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Approximate significance of smooth terms:
+        edf Ref.df     F p-value  
+s(kd25)   1      1 7.026  0.0168 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+R-sq.(adj) =  0.251   Deviance explained = 29.2%
+-REML = -1.1326  Scale est. = 0.31665   n = 19
+---------- ######### ----------  
+
+----------------------------------------------------
+
+Model 2 of 3 
+Eq: 9 
+DE: 59.87  | Max Concurvity: 0.17  | Term: s(riv25) 
+Backward: "c1 ~ s(riv25, k = 4, bs = \"cr\") + s(sss25, k = 4, bs = \"cr\")" 
+
+percentile: 25; family:quasi(link=identity); lag:08; eq:09; DE:59.87
+original:  c1 ~ s(enso, k = 4, bs = "cr") + s(riv25, k = 4, bs = "cr") +     s(sss25, k = 4, bs = "cr") + ti(riv25, sss25, k = 4, bs = "cr") 
+backward:  c1 ~ s(riv25, k = 4, bs = "cr") + s(sss25, k = 4, bs = "cr") 
+
+Family: quasi 
+Link function: identity 
+
+Formula:
+c1 ~ s(riv25, k = 4, bs = "cr") + s(sss25, k = 4, bs = "cr")
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -0.35397    0.08741  -4.049  0.00074 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Approximate significance of smooth terms:
+           edf Ref.df     F p-value  
+s(riv25) 2.837  2.977 3.929  0.0230 *
+s(sss25) 1.000  1.000 7.365  0.0142 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+R-sq.(adj) =  0.514   Deviance explained = 59.9%
+-REML = -5.0545  Scale est. = 0.17574   n = 23
+
+--- Concurvity (Worst) ---
+    para s(riv25) s(sss25) 
+    0.00     0.17     0.17 
+---------- ######### ----------  
+
+----------------------------------------------------
+
+Model 3 of 3 
+Eq: 5 
+DE: 28.47  | Max Concurvity: 0  | Term: s(sss25) 
+Backward: "c1 ~ s(sss25, k = 4, bs = \"cr\")" 
+
+percentile: 25; family:quasi(link=identity); lag:08; eq:05; DE:28.47
+original:  c1 ~ s(enso, k = 4, bs = "cr") + s(sss25, k = 4, bs = "cr") 
+backward:  c1 ~ s(sss25, k = 4, bs = "cr") 
+
+Family: quasi 
+Link function: identity 
+
+Formula:
+c1 ~ s(sss25, k = 4, bs = "cr")
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)   
+(Intercept)  -0.3540     0.1085  -3.261  0.00373 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Approximate significance of smooth terms:
+         edf Ref.df     F p-value   
+s(sss25)   1      1 8.357 0.00875 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+R-sq.(adj) =  0.251   Deviance explained = 28.5%
+-REML = -3.3435  Scale est. = 0.27096   n = 23
+---------- ######### ----------  
+
+----------------------------------------------------
+
+--- LAG: lag_9  ---
+
+Model 1 of 1 
+Eq: 5 
+DE: 43.9  | Max Concurvity: 0  | Term: s(sss25) 
+Backward: "c1 ~ s(sss25, k = 4, bs = \"cr\")" 
+
+percentile: 25; family:quasi(link=identity); lag:09; eq:05; DE:43.9
+original:  c1 ~ s(enso, k = 4, bs = "cr") + s(sss25, k = 4, bs = "cr") 
+backward:  c1 ~ s(sss25, k = 4, bs = "cr") 
+
+Family: quasi 
+Link function: identity 
+
+Formula:
+c1 ~ s(sss25, k = 4, bs = "cr")
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)   
+(Intercept)  -0.3785     0.1023  -3.701  0.00155 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Approximate significance of smooth terms:
+           edf Ref.df     F p-value  
+s(sss25) 2.352  2.699 5.393  0.0148 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+R-sq.(adj) =  0.368   Deviance explained = 43.9%
+-REML = -3.2004  Scale est. = 0.23011   n = 22
+---------- ######### ----------  
+
+----------------------------------------------------
+>> Percentile: 50 
+--------------------------------------
+
+--- LAG: lag_3  ---
+
+Model 1 of 1 
+Eq: 4 
+DE: 24.08  | Max Concurvity: 0  | Term: s(kd50) 
+Backward: "c1 ~ s(kd50, k = 4, bs = \"cr\")" 
+
+percentile: 50; family:quasi(link=identity); lag:03; eq:04; DE:24.08
+original:  c1 ~ s(enso, k = 4, bs = "cr") + s(kd50, k = 4, bs = "cr") 
+backward:  c1 ~ s(kd50, k = 4, bs = "cr") 
+
+Family: quasi 
+Link function: identity 
+
+Formula:
+c1 ~ s(kd50, k = 4, bs = "cr")
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)  
+(Intercept)  -0.3126     0.1131  -2.764   0.0113 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Approximate significance of smooth terms:
+        edf Ref.df     F p-value  
+s(kd50)   1      1 6.978  0.0149 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+R-sq.(adj) =  0.206   Deviance explained = 24.1%
+-REML = -1.6191  Scale est. = 0.30703   n = 24
+---------- ######### ----------  
+
+----------------------------------------------------
+
+--- LAG: lag_4  ---
+
+Model 1 of 1 
+Eq: 4 
+DE: 17.46  | Max Concurvity: 0  | Term: s(kd50) 
+Backward: "c1 ~ s(kd50, k = 4, bs = \"cr\")" 
+
+percentile: 50; family:quasi(link=identity); lag:04; eq:04; DE:17.46
+original:  c1 ~ s(enso, k = 4, bs = "cr") + s(kd50, k = 4, bs = "cr") 
+backward:  c1 ~ s(kd50, k = 4, bs = "cr") 
+
+Family: quasi 
+Link function: identity 
+
+Formula:
+c1 ~ s(kd50, k = 4, bs = "cr")
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)   
+(Intercept)  -0.3540     0.1166  -3.036  0.00628 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Approximate significance of smooth terms:
+        edf Ref.df     F p-value  
+s(kd50)   1      1 4.441  0.0473 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+R-sq.(adj) =  0.135   Deviance explained = 17.5%
+-REML = -1.3688  Scale est. = 0.31267   n = 23
+---------- ######### ----------  
+
+----------------------------------------------------
+
+--- LAG: lag_7  ---
+
+Model 1 of 1 
+Eq: 4 
+DE: 26.03  | Max Concurvity: 0  | Term: s(kd50) 
+Backward: "c1 ~ s(kd50, k = 4, bs = \"cr\")" 
+
+percentile: 50; family:quasi(link=identity); lag:07; eq:04; DE:26.03
+original:  c1 ~ s(enso, k = 4, bs = "cr") + s(kd50, k = 4, bs = "cr") 
+backward:  c1 ~ s(kd50, k = 4, bs = "cr") 
+
+Family: quasi 
+Link function: identity 
+
+Formula:
+c1 ~ s(kd50, k = 4, bs = "cr")
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)   
+(Intercept)  -0.3819     0.1251  -3.053  0.00684 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Approximate significance of smooth terms:
+        edf Ref.df     F p-value  
+s(kd50)   1      1 6.334  0.0215 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+R-sq.(adj) =  0.219   Deviance explained =   26%
+-REML = -1.2405  Scale est. = 0.31291   n = 20
+---------- ######### ----------  
+
+----------------------------------------------------
+
+--- LAG: lag_8  ---
+
+Model 1 of 2 
+Eq: 4 
+DE: 40.21  | Max Concurvity: 0  | Term: s(kd50) 
+Backward: "c1 ~ s(kd50, k = 4, bs = \"cr\")" 
+
+percentile: 50; family:quasi(link=identity); lag:08; eq:04; DE:40.21
+original:  c1 ~ s(enso, k = 4, bs = "cr") + s(kd50, k = 4, bs = "cr") 
+backward:  c1 ~ s(kd50, k = 4, bs = "cr") 
+
+Family: quasi 
+Link function: identity 
+
+Formula:
+c1 ~ s(kd50, k = 4, bs = "cr")
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)   
+(Intercept)  -0.3861     0.1187  -3.254  0.00467 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Approximate significance of smooth terms:
+        edf Ref.df     F p-value   
+s(kd50)   1      1 11.43 0.00355 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+R-sq.(adj) =  0.367   Deviance explained = 40.2%
+-REML = -2.529  Scale est. = 0.26756   n = 19
+---------- ######### ----------  
+
+----------------------------------------------------
+
+Model 2 of 2 
+Eq: 5 
+DE: 25.71  | Max Concurvity: 0  | Term: s(sss50) 
+Backward: "c1 ~ s(sss50, k = 4, bs = \"cr\")" 
+
+percentile: 50; family:quasi(link=identity); lag:08; eq:05; DE:25.71
+original:  c1 ~ s(enso, k = 4, bs = "cr") + s(sss50, k = 4, bs = "cr") 
+backward:  c1 ~ s(sss50, k = 4, bs = "cr") 
+
+Family: quasi 
+Link function: identity 
+
+Formula:
+c1 ~ s(sss50, k = 4, bs = "cr")
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)   
+(Intercept)  -0.3540     0.1106    -3.2   0.0043 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Approximate significance of smooth terms:
+         edf Ref.df     F p-value  
+s(sss50)   1      1 7.267  0.0135 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+R-sq.(adj) =  0.222   Deviance explained = 25.7%
+-REML = -2.9051  Scale est. = 0.2814    n = 23
+---------- ######### ----------  
+
+----------------------------------------------------
+
+--- LAG: lag_9  ---
+
+Model 1 of 1 
+Eq: 17 
+DE: 48.85  | Max Concurvity: 0  | Term: s(kd50) 
+Backward: "c1 ~ s(kd50, k = 4, bs = \"cr\")" 
+
+percentile: 50; family:quasi(link=identity); lag:09; eq:17; DE:48.85
+original:  c1 ~ s(enso, k = 4, bs = "cr") + s(riv50, k = 4, bs = "cr") +     s(sst50, k = 4, bs = "cr") + s(kd50, k = 4, bs = "cr") +     ti(riv50, kd50, k = 4, bs = "cr") 
+backward:  c1 ~ s(kd50, k = 4, bs = "cr") 
+
+Family: quasi 
+Link function: identity 
+
+Formula:
+c1 ~ s(kd50, k = 4, bs = "cr")
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)   
+(Intercept)  -0.4115     0.1202  -3.423  0.00394 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Approximate significance of smooth terms:
+          edf Ref.df     F p-value  
+s(kd50) 2.479  2.809 3.846   0.027 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+R-sq.(adj) =  0.401   Deviance explained = 48.9%
+-REML = -1.1113  Scale est. = 0.26021   n = 18
+---------- ######### ----------  
+
+----------------------------------------------------
+
+--- LAG: lag_10  ---
+
+Model 1 of 1 
+Eq: 5 
+DE: 40.49  | Max Concurvity: 0  | Term: s(sss50) 
+Backward: "c1 ~ s(sss50, k = 4, bs = \"cr\")" 
+
+percentile: 50; family:quasi(link=identity); lag:10; eq:05; DE:40.49
+original:  c1 ~ s(enso, k = 4, bs = "cr") + s(sss50, k = 4, bs = "cr") 
+backward:  c1 ~ s(sss50, k = 4, bs = "cr") 
+
+Family: quasi 
+Link function: identity 
+
+Formula:
+c1 ~ s(sss50, k = 4, bs = "cr")
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)   
+(Intercept)  -0.3862     0.1097   -3.52  0.00246 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Approximate significance of smooth terms:
+           edf Ref.df     F p-value  
+s(sss50) 2.056  2.398 4.887  0.0204 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+R-sq.(adj) =  0.337   Deviance explained = 40.5%
+-REML = -2.7422  Scale est. = 0.25277   n = 21
+---------- ######### ----------  
+
+----------------------------------------------------
+>> Percentile: 75 
+--------------------------------------
+
+--- LAG: lag_3  ---
+
+Model 1 of 1 
+Eq: 11 
+DE: 41.51  | Max Concurvity: 0.1  | Term: s(sst75) 
+Backward: "c1 ~ s(sst75, k = 4, bs = \"cr\") + s(kd75, k = 4, bs = \"cr\")" 
+
+percentile: 75; family:quasi(link=identity); lag:03; eq:11; DE:41.51
+original:  c1 ~ s(enso, k = 4, bs = "cr") + s(sst75, k = 4, bs = "cr") +     s(kd75, k = 4, bs = "cr") 
+backward:  c1 ~ s(sst75, k = 4, bs = "cr") + s(kd75, k = 4, bs = "cr") 
+
+Family: quasi 
+Link function: identity 
+
+Formula:
+c1 ~ s(sst75, k = 4, bs = "cr") + s(kd75, k = 4, bs = "cr")
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)   
+(Intercept)  -0.3126     0.1039   -3.01  0.00689 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Approximate significance of smooth terms:
+           edf Ref.df     F p-value  
+s(sst75) 1.902  2.284 3.647  0.0476 *
+s(kd75)  1.000  1.000 7.209  0.0142 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+R-sq.(adj) =  0.331   Deviance explained = 41.5%
+-REML = -2.978  Scale est. = 0.25895   n = 24
+
+--- Concurvity (Worst) ---
+    para s(sst75)  s(kd75) 
+     0.0      0.1      0.1 
+---------- ######### ----------  
+
+----------------------------------------------------
+
+--- LAG: lag_7  ---
+
+Model 1 of 1 
+Eq: 4 
+DE: 28.76  | Max Concurvity: 0  | Term: s(kd75) 
+Backward: "c1 ~ s(kd75, k = 4, bs = \"cr\")" 
+
+percentile: 75; family:quasi(link=identity); lag:07; eq:04; DE:28.76
+original:  c1 ~ s(enso, k = 4, bs = "cr") + s(kd75, k = 4, bs = "cr") 
+backward:  c1 ~ s(kd75, k = 4, bs = "cr") 
+
+Family: quasi 
+Link function: identity 
+
+Formula:
+c1 ~ s(kd75, k = 4, bs = "cr")
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)   
+(Intercept)  -0.3819     0.1227  -3.111  0.00603 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Approximate significance of smooth terms:
+        edf Ref.df     F p-value  
+s(kd75)   1      1 7.268  0.0148 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+R-sq.(adj) =  0.248   Deviance explained = 28.8%
+-REML = -1.5499  Scale est. = 0.30135   n = 20
+---------- ######### ----------  
+
+----------------------------------------------------
+
+--- LAG: lag_8  ---
+
+Model 1 of 1 
+Eq: 4 
+DE: 44.12  | Max Concurvity: 0  | Term: s(kd75) 
+Backward: "c1 ~ s(kd75, k = 4, bs = \"cr\")" 
+
+percentile: 75; family:quasi(link=identity); lag:08; eq:04; DE:44.12
+original:  c1 ~ s(enso, k = 4, bs = "cr") + s(kd75, k = 4, bs = "cr") 
+backward:  c1 ~ s(kd75, k = 4, bs = "cr") 
+
+Family: quasi 
+Link function: identity 
+
+Formula:
+c1 ~ s(kd75, k = 4, bs = "cr")
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)   
+(Intercept)  -0.3861     0.1147  -3.366  0.00367 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Approximate significance of smooth terms:
+        edf Ref.df     F p-value   
+s(kd75)   1      1 13.43 0.00192 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+R-sq.(adj) =  0.408   Deviance explained = 44.1%
+-REML = -3.1175  Scale est. = 0.25005   n = 19
+---------- ######### ----------  
+
+----------------------------------------------------
+
+--- LAG: lag_9  ---
+
+Model 1 of 1 
+Eq: 4 
+DE: 38.05  | Max Concurvity: 0  | Term: s(kd75) 
+Backward: "c1 ~ s(kd75, k = 4, bs = \"cr\")" 
+
+percentile: 75; family:quasi(link=identity); lag:09; eq:04; DE:38.05
+original:  c1 ~ s(enso, k = 4, bs = "cr") + s(kd75, k = 4, bs = "cr") 
+backward:  c1 ~ s(kd75, k = 4, bs = "cr") 
+
+Family: quasi 
+Link function: identity 
+
+Formula:
+c1 ~ s(kd75, k = 4, bs = "cr")
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)   
+(Intercept)  -0.4115     0.1261  -3.265  0.00487 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Approximate significance of smooth terms:
+        edf Ref.df     F p-value   
+s(kd75)   1      1 9.829 0.00639 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+R-sq.(adj) =  0.342   Deviance explained = 38.1%
+-REML = -1.9525  Scale est. = 0.286     n = 18
+---------- ######### ----------  
+
+----------------------------------------------------
+
+--- LAG: lag_10  ---
+
+Model 1 of 1 
+Eq: 5 
+DE: 40.79  | Max Concurvity: 0  | Term: s(sss75) 
+Backward: "c1 ~ s(sss75, k = 4, bs = \"cr\")" 
+
+percentile: 75; family:quasi(link=identity); lag:10; eq:05; DE:40.79
+original:  c1 ~ s(enso, k = 4, bs = "cr") + s(sss75, k = 4, bs = "cr") 
+backward:  c1 ~ s(sss75, k = 4, bs = "cr") 
+
+Family: quasi 
+Link function: identity 
+
+Formula:
+c1 ~ s(sss75, k = 4, bs = "cr")
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)   
+(Intercept)  -0.3862     0.1092  -3.537  0.00235 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Approximate significance of smooth terms:
+          edf Ref.df     F p-value  
+s(sss75) 1.97  2.341 4.906  0.0205 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+R-sq.(adj) =  0.343   Deviance explained = 40.8%
+-REML = -2.7255  Scale est. = 0.25032   n = 21
+---------- ######### ----------  
+
+----------------------------------------------------
+
+==============================
+RESPONSE: c2 
+==============================
+
+>> Percentile: 25 
+--------------------------------------
+>> Percentile: 50 
+--------------------------------------
+>> Percentile: 75 
+--------------------------------------
+
+==============================
+RESPONSE: c3 
+==============================
+
+>> Percentile: 25 
+--------------------------------------
+>> Percentile: 50 
+--------------------------------------
+>> Percentile: 75 
+--------------------------------------
+
+==============================
+RESPONSE: c4 
+==============================
+
+>> Percentile: 25 
+--------------------------------------
+
+--- LAG: lag_8  ---
+
+Model 1 of 1 
+Eq: 4 
+DE: 48.19  | Max Concurvity: 0  | Term: s(kd25) 
+Backward: "c4 ~ s(kd25, k = 4, bs = \"cr\")" 
+
+percentile: 25; family:quasi(link=identity); lag:08; eq:04; DE:48.19
+original:  c4 ~ s(enso, k = 4, bs = "cr") + s(kd25, k = 4, bs = "cr") 
+backward:  c4 ~ s(kd25, k = 4, bs = "cr") 
+
+Family: quasi 
+Link function: identity 
+
+Formula:
+c4 ~ s(kd25, k = 4, bs = "cr")
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)   
+(Intercept)  -0.4174     0.1187  -3.516  0.00307 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Approximate significance of smooth terms:
+          edf Ref.df     F p-value  
+s(kd25) 2.805  2.971 4.342  0.0282 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+R-sq.(adj) =  0.386   Deviance explained = 48.2%
+-REML = 0.1294  Scale est. = 0.26775   n = 19
+---------- ######### ----------  
+
+----------------------------------------------------
+
+--- LAG: lag_9  ---
+
+Model 1 of 1 
+Eq: 4 
+DE: 56.87  | Max Concurvity: 0  | Term: s(kd25) 
+Backward: "c4 ~ s(kd25, k = 4, bs = \"cr\")" 
+
+percentile: 25; family:quasi(link=identity); lag:09; eq:04; DE:56.87
+original:  c4 ~ s(enso, k = 4, bs = "cr") + s(kd25, k = 4, bs = "cr") 
+backward:  c4 ~ s(kd25, k = 4, bs = "cr") 
+
+Family: quasi 
+Link function: identity 
+
+Formula:
+c4 ~ s(kd25, k = 4, bs = "cr")
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  -0.4671     0.1083  -4.312 0.000683 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Approximate significance of smooth terms:
+          edf Ref.df     F p-value  
+s(kd25) 2.694  2.931 6.658  0.0109 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+R-sq.(adj) =  0.487   Deviance explained = 56.9%
+-REML = -2.1636  Scale est. = 0.21122   n = 18
+---------- ######### ----------  
+
+----------------------------------------------------
+>> Percentile: 50 
+--------------------------------------
+
+--- LAG: lag_8  ---
+
+Model 1 of 1 
+Eq: 4 
+DE: 57.63  | Max Concurvity: 0  | Term: s(kd50) 
+Backward: "c4 ~ s(kd50, k = 4, bs = \"cr\")" 
+
+percentile: 50; family:quasi(link=identity); lag:08; eq:04; DE:57.63
+original:  c4 ~ s(enso, k = 4, bs = "cr") + s(kd50, k = 4, bs = "cr") 
+backward:  c4 ~ s(kd50, k = 4, bs = "cr") 
+
+Family: quasi 
+Link function: identity 
+
+Formula:
+c4 ~ s(kd50, k = 4, bs = "cr")
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)   
+(Intercept)  -0.4174     0.1076  -3.879  0.00146 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Approximate significance of smooth terms:
+          edf Ref.df     F p-value   
+s(kd50) 2.872  2.987 6.232 0.00605 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+R-sq.(adj) =  0.496   Deviance explained = 57.6%
+-REML = -1.0415  Scale est. = 0.21993   n = 19
+---------- ######### ----------  
+
+----------------------------------------------------
+
+--- LAG: lag_9  ---
+
+Model 1 of 1 
+Eq: 4 
+DE: 75.18  | Max Concurvity: 0  | Term: s(kd50) 
+Backward: "c4 ~ s(kd50, k = 4, bs = \"cr\")" 
+
+percentile: 50; family:quasi(link=identity); lag:09; eq:04; DE:75.18
+original:  c4 ~ s(enso, k = 4, bs = "cr") + s(kd50, k = 4, bs = "cr") 
+backward:  c4 ~ s(kd50, k = 4, bs = "cr") 
+
+Family: quasi 
+Link function: identity 
+
+Formula:
+c4 ~ s(kd50, k = 4, bs = "cr")
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -0.46711    0.08285  -5.638 6.01e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Approximate significance of smooth terms:
+          edf Ref.df     F  p-value    
+s(kd50) 2.929  2.996 14.07 0.000209 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+R-sq.(adj) =    0.7   Deviance explained = 75.2%
+-REML = -4.9291  Scale est. = 0.12357   n = 18
+---------- ######### ----------  
+
+----------------------------------------------------
+>> Percentile: 75 
+--------------------------------------
+
+--- LAG: lag_9  ---
+
+Model 1 of 2 
+Eq: 4 
+DE: 61.83  | Max Concurvity: 0  | Term: s(kd75) 
+Backward: "c4 ~ s(kd75, k = 4, bs = \"cr\")" 
+
+percentile: 75; family:quasi(link=identity); lag:09; eq:04; DE:61.83
+original:  c4 ~ s(enso, k = 4, bs = "cr") + s(kd75, k = 4, bs = "cr") 
+backward:  c4 ~ s(kd75, k = 4, bs = "cr") 
+
+Family: quasi 
+Link function: identity 
+
+Formula:
+c4 ~ s(kd75, k = 4, bs = "cr")
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  -0.4671     0.1025  -4.555 0.000439 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Approximate significance of smooth terms:
+          edf Ref.df     F p-value   
+s(kd75) 2.871  2.987 7.405 0.00443 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+R-sq.(adj) =  0.541   Deviance explained = 61.8%
+-REML = -2.0487  Scale est. = 0.18929   n = 18
+---------- ######### ----------  
+
+----------------------------------------------------
+
+Model 2 of 2 
+Eq: 11 
+DE: 78.24  | Max Concurvity: 0.12  | Term: s(sst75) 
+Backward: "c4 ~ s(sst75, k = 4, bs = \"cr\") + s(kd75, k = 4, bs = \"cr\")" 
+
+percentile: 75; family:quasi(link=identity); lag:09; eq:11; DE:78.24
+original:  c4 ~ s(enso, k = 4, bs = "cr") + s(sst75, k = 4, bs = "cr") +     s(kd75, k = 4, bs = "cr") 
+backward:  c4 ~ s(sst75, k = 4, bs = "cr") + s(kd75, k = 4, bs = "cr") 
+
+Family: quasi 
+Link function: identity 
+
+Formula:
+c4 ~ s(sst75, k = 4, bs = "cr") + s(kd75, k = 4, bs = "cr")
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -0.46711    0.08042  -5.808 5.92e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Approximate significance of smooth terms:
+           edf Ref.df     F  p-value    
+s(sst75) 1.000  1.000 10.03 0.007439 ** 
+s(kd75)  2.907  2.993 11.01 0.000883 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+R-sq.(adj) =  0.717   Deviance explained = 78.2%
+-REML = -5.447  Scale est. = 0.11642   n = 18
+
+--- Concurvity (Worst) ---
+    para s(sst75)  s(kd75) 
+    0.00     0.12     0.12 
+---------- ######### ----------  
+
+----------------------------------------------------
+
+--- LAG: lag_10  ---
+
+Model 1 of 1 
+Eq: 36 
+DE: 82.02  | Max Concurvity: 0.12  | Term: s(sam) 
+Backward: "c4 ~ s(sam, k = 4, bs = \"cr\") + s(kd75, k = 4, bs = \"cr\")" 
+
+percentile: 75; family:quasi(link=identity); lag:10; eq:36; DE:82.02
+original:  c4 ~ s(sam, k = 4, bs = "cr") + s(kd75, k = 4, bs = "cr") 
+backward:  c4 ~ s(sam, k = 4, bs = "cr") + s(kd75, k = 4, bs = "cr") 
+
+Family: quasi 
+Link function: identity 
+
+Formula:
+c4 ~ s(sam, k = 4, bs = "cr") + s(kd75, k = 4, bs = "cr")
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -0.54081    0.07253  -7.456 1.45e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Approximate significance of smooth terms:
+          edf Ref.df      F p-value   
+s(sam)  2.466  2.792 10.462  0.0016 **
+s(kd75) 2.790  2.964  3.515  0.0438 * 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+R-sq.(adj) =  0.732   Deviance explained =   82%
+-REML = -6.2189  Scale est. = 0.089441  n = 17
+
+--- Concurvity (Worst) ---
+   para  s(sam) s(kd75) 
+   0.00    0.12    0.12 
+---------- ######### ----------  
+
+----------------------------------------------------

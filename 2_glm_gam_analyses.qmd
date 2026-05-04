@@ -1,0 +1,1050 @@
+::: {.callout-note appearance="simple"}
+### **Jesus C. Compaire** \| {{< fa fish >}} {{< fa fish >}} {{< fa fish >}} | [{{< fa envelope >}}](mailto:jesus.canocompaire@uca.es) \| [{{< fa brands github >}}](https://github.com/jcompaire)
+Assistant Researcher - **CESIMAR (CONICET)** \| Assistant Professor - **UNPSJB**
+:::
+
+### **Description**
+
+Code to replicate the statistical analyses and generate figures performed in the section **3.3 Generalzed Linear and Additive Models** of the manuscript:
+
+Compaire, J.C., Irigoyen, A.J. Simionato C.G. & Acha, E.M. (2026). Multiscale environmental forcing of multispecies fishery dynamics across climate timescales. Submitted to *Fisheries Oceanography*, **XXX** <https://doi.org/XXXXX> \|
+
+---
+title: " Code 2 of 2 - Multiscale fishery variability"
+date: "23-04-2026"
+---
+
+# **Set console, environment, packages, directory, and functions**
+
+```{r, results='hide'}
+##| results: hide
+# Clear console, environment, figures and free memory
+cat("\014"); rm(list=ls()); graphics.off(); gc()
+# Load packages needed for analysis and figures
+pk <- c(
+  "comprehenr", "crayon", "dtwclust", "dplyr", "forecast", "kableExtra",
+  "knitr", "ggplot2", "ggpubr", "ggspatial", "ggthemes", "gratia", "grid",
+  "gridExtra", "gridtext", "MARSS", "maptools", "metR", "mgcv", "ncdf4",
+  "patchwork", "performance", "plyr", "purrr", "raster", "readxl", "reshape2",
+  "rnaturalearth", "sf", "scales", "stats", "stringr", "tidyr", "tidyverse"
+  )
+invisible(lapply(pk, require, character.only = TRUE))
+# Set working directory, and invoke functions
+source("dtw_dfa_glm_gam_aucfz_functions.R") # functions
+out_dir_fig <- "outputs/figures"
+out_dir_files <- "outputs/files"
+if (!dir.exists(out_dir_fig)) dir.create(out_dir_fig, recursive = TRUE)
+if (!dir.exists(out_dir_files)) dir.create(out_dir_files, recursive = TRUE)
+```
+
+# **Read environmental data**
+
+```{r, results='hold'}
+##| results: hold
+nc <- nc_open(paste0("datasets/Environmental_lagged_arrays_10years.nc")) # open ncfile
+nc_info <- capture.output(print(nc))
+cat(nc_info[-1], sep = "\n")
+env_out <- read_env_vars(nc)
+env_var_lag <- env_out$env_var_lag
+time        <- env_out$time
+lag         <- c(1:length(env_var_lag)-1)
+nc_close(nc) # close ncfile
+```
+
+# **GLMs analyses for i) DTW-centroids and ii) DFA-states**
+
+## Load DTW-centroids data
+
+```{r}
+# --- Read centroids
+load(paste0(out_dir_files, '/centroids_DBA.RData')) # centroids
+fish_df <- get_states_or_centroids(t(dba_centroids), years = 1996:2023,
+                                   tag = 'centroids')
+# --- Combine names of environmental and fishing datasets
+names_col <- c(env_out$names_col, colnames(fish_df)[-length(fish_df)])
+# --- Merge environmental and fishing data by lag
+env_fish_lag_dtw <- merge_env_states(env_var_lag, fish_df, names_col)
+```
+
+## Getting all possible formulas
+
+```{r, results='asis'}
+#  --- Generate all possible formulas
+th <- c('25','50','75') # percentiles
+response <- "y"  # generic name for response variable
+glms_formulas_by_ix <- list()
+for(k in 1:length(th)){
+  # List of variables and index selection
+  vq <- c(th[k], response)
+  idx_var <- to_vec(
+    for(i in 1:length(vq)) str_which(names_col, vq[i], negate = FALSE)
+  )
+  names_var <- c('soi','sam','enso', names_col[idx_var])
+  
+  #  Combinations of climate indices
+  ci <- c('soi','sam','enso')
+  cixs <- to_list(
+    for(i in 1:length(ci)) c(combn(ci, i, simplify = FALSE))
+  )
+  
+  cixss <- list()
+  cixss[[1]] <- cixs[[2]]   # pairs
+  cixss[[1]][[4]] <- unlist(cixs[[3]]) # all
+  
+  for(ix in 1:length(cixss[[1]])){
+    cith <- paste(paste(cixss[[1]][[ix]], collapse = '|'), sep = '|')
+    names_var_ix <- names_var[-grep(pattern = cith, names_var)]
+    
+    #  Remove percentile tag
+    for(tag in th[k]) names_var_ix <- gsub(tag,'', names_var_ix)
+    
+    # Covariates and response
+    xnames <- names_var_ix
+    ynames <- response
+    
+    # Formulas with interactions
+    inter <- c("riv", "kd", "sss")
+    glms_f <- comb_glmi(xnames, ynames, inter)
+    
+    if(ix < length(cixss[[1]])){
+      glms_f <- glms_f[grep(pattern = paste(cixss[[1]][[4]], collapse = '|'), glms_f)]
+    }
+    glms_formulas_by_ix[[ix]] <- glms_f
+  }
+}
+# Combine all formulas into a single object
+glms_formulas <- do.call(c, glms_formulas_by_ix)
+# Transform to character
+# glms_formulas_chr <- sapply(
+#   glms_formulas, function(f) paste(deparse(f), collapse = " ")
+#   )
+cat(sapply(head(glms_formulas, 3), format),
+    "... and so on until... ",
+    sapply(tail(glms_formulas, 3), format), sep = "\n\n")
+```
+
+## Run GLMs for DTW-centroids
+
+```{r}
+glm_dtw_results <- run_glms_nested(
+  nvariables = 4,
+  env_fish_lag = env_fish_lag_dtw,
+  lag = lag, # lags
+  th = th, # percentiles
+  glms_formulas = glms_formulas, # list
+  fmly = list(quasi(link = "identity", variance = "constant")), # family
+  add_th_suffix = add_th_suffix, # function
+  try_glm_stepwise = try_glm_stepwise # function
+)
+```
+
+## Save summaries of significant models
+
+```{r}
+outfile <- paste0(out_dir_files, '/SupplementaryMaterial_S12_GLMs_DTW.txt')
+sink(outfile, append = FALSE)
+print_glm_nested_results(glm_dtw_results)
+sink()
+closeAllConnections()
+```
+
+## Load DFA states data
+
+```{r}
+# --- Read states
+load(paste0(out_dir_files, '/states_DFA.RData')) # states
+fish_df <- get_states_or_centroids(states_dfa, years = 1996:2023,
+                                   tag = 'states')
+# --- Combine names of environmental and fishing datasets
+names_col <- c(env_out$names_col, colnames(fish_df)[-length(fish_df)])
+# --- Merge environmental and fishing data by lag
+env_fish_lag_dfa <- merge_env_states(env_var_lag, fish_df, names_col)
+```
+
+## Run GLMs for DFA-states
+
+```{r}
+glm_dfa_results <- run_glms_nested(
+  nvariables = 3,
+  env_fish_lag = env_fish_lag_dfa,
+  lag = lag, # lags
+  th = th, # percentiles
+  glms_formulas = glms_formulas, # list
+  fmly = list(quasi(link = "identity", variance = "constant")), # family
+  add_th_suffix = add_th_suffix, # function
+  try_glm_stepwise = try_glm_stepwise # function
+  )
+```
+
+## Save summaries of significant models
+
+```{r}
+outfile <- paste0(out_dir_files, '/SupplementaryMaterial_S13_GLMs_DFA.txt')
+sink(outfile, append = FALSE)
+print_glm_nested_results(glm_dfa_results)
+sink()
+closeAllConnections()
+```
+
+## Save the outputs as R dataset objects
+
+```{r}
+# For DTW centroids as response variable
+save(
+  glm_dtw_results,
+  file = file.path(out_dir_files,'/GLMs_DTW_results.RData'))
+# For DFA states as response variable
+save(
+  glm_dfa_results,
+  file = file.path(out_dir_files, "/GLMs_DFA_results.RData"))
+```
+
+# **Load GLMs results, create subplot elements and plot lags and DE for centroids and common hidden trends**
+
+```{r, results = 'asis', fig.width=12, fig.height=9}
+# --- Loading results for DFA states and DTW centroids
+load(paste0(out_dir_files, '/GLMs_DTW_results.RData'))
+load(paste0(out_dir_files, '/GLMs_DFA_results.RData'))
+# Centroids
+c1 <- tables_states_glm(glm_dtw_results[['c1']], '1')
+c2 <- tables_states_glm(glm_dtw_results[['c2']], '2')
+c3 <- tables_states_glm(glm_dtw_results[['c3']], '3')
+c4 <- tables_states_glm(glm_dtw_results[['c4']], '4')
+# States
+s1 <- tables_states_glm(glm_dfa_results[['s1']], '1')
+s2 <- tables_states_glm(glm_dfa_results[['s2']], '2')
+s3 <- tables_states_glm(glm_dfa_results[['s3']], '3')
+
+# --- Getting list by percentile
+percentiles <- c("th25", "th50", "th75")
+# --- Function calls "states" and "centroids" lists (s1, s2, s3, and c1, c2, c3, c4)
+cent_percentiles_list <- combine_by_percentiles(percentiles, prefix = "c", n_elements = 4)
+stat_percentiles_list <- combine_by_percentiles(percentiles, prefix = "s", n_elements = 3)
+
+# --- Getting each percentile as dataframe for "states" and "centroids"
+# Centroids
+cent_th25 <- cent_percentiles_list[["th25"]]
+cent_th50 <- cent_percentiles_list[["th50"]]
+cent_th75 <- cent_percentiles_list[["th75"]]
+# States
+stat_th25 <- stat_percentiles_list[["th25"]]
+stat_th50 <- stat_percentiles_list[["th50"]]
+stat_th75 <- stat_percentiles_list[["th75"]]
+
+# --- Create each subplot element
+# Centroids
+c25 <- plot_de_lag_annotated(cent_th25, "25th", "A", fill_label = NULL)
+c50 <- plot_de_lag_annotated(cent_th50, "50th", "B", fill_label = NULL)
+c75 <- plot_de_lag_annotated(cent_th75, "75th", "C", show_legend = TRUE, fill_label = "Centroids", 0.8, 0.87)
+# States
+s25 <- plot_de_lag_annotated(stat_th25, "25th", "A", fill_label = NULL)
+s50 <- plot_de_lag_annotated(stat_th50, "50th", "B", fill_label = NULL)
+s75 <- plot_de_lag_annotated(stat_th75, "75th", "C", show_legend = TRUE, fill_label = "Trends", 0.92, 0.9)
+
+# Merging plots into a single one and export it as PDF
+# Centroids
+file_path <- file.path(out_dir_fig, "Fig_S8")
+# --- as PDF
+pdf(paste0(file_path, ".pdf"), width = 12, height = 9, colormodel = "cmyk")
+par(mfcol=c(1,1))
+figure <- ggarrange(c25, c50, c75,
+                    ncol = 3, nrow = 1, common.legend = F)
+f_dtw <- annotate_figure(
+  figure, 
+  bottom = textGrob(
+    expression(paste("Lag (years)")),
+    rot = 0, vjust = 0.3,
+    gp = gpar(cex = 1.5, fontfamily = "Times" , fontsize = 12)
+  ),
+  left = textGrob(
+    expression(paste("Deviance explained (%)")),
+    rot = 90, vjust = 1.3,
+    gp = gpar(cex = 1.5, fontfamily = "Times" , fontsize = 12)
+  )) 
+print(f_dtw)
+invisible(dev.off())
+# --- as PNG
+ragg::agg_png(paste0(file_path, ".png"), width = 12, height = 9, units = "in", res = 600)
+print(f_dtw)
+invisible(dev.off())
+# HTML output
+if (knitr::is_html_output()) {
+  cat("\n\n")
+  print(f_dtw)
+  cat("\n\n**Figure S8.-** Average (triangles) and maximum (bars) deviance explained (%) by GLMs for the DTW-derived centroids 1-4 at different time lags (from 0 to 10 years). Numbers above the bars indicate the count of significant models for each specific lag. \n\n")
+}
+
+# States
+file_path <- file.path(out_dir_fig, "Fig_S9")
+# --- as PDF
+pdf(paste0(file_path, ".pdf"), width = 12, height = 9, colormodel = "cmyk")
+par(mfcol=c(1,1))
+figure <- ggarrange(s25, s50, s75,
+                    ncol = 3, nrow = 1, common.legend = F)
+f_dtw <- annotate_figure(
+  figure, 
+  bottom = textGrob(
+    expression(paste("Lag (years)")),
+    rot = 0, vjust = 0.3,
+    gp = gpar(cex = 1.5, fontfamily = "Times" , fontsize = 12)
+  ),
+  left = textGrob(
+    expression(paste("Deviance explained (%)")),
+    rot = 90, vjust = 1.3,
+    gp = gpar(cex = 1.5, fontfamily = "Times" , fontsize = 12)
+  )) 
+print(f_dtw)
+invisible(dev.off())
+# --- as PNG
+ragg::agg_png(paste0(file_path, ".png"), width = 12, height = 9, units = "in", res = 600)
+print(f_dtw)
+invisible(dev.off())
+# HTML output
+if (knitr::is_html_output()) {
+  cat("\n\n")
+  print(f_dtw)
+  cat("\n\n**Figure S9.-** Average (triangles) and maximum (bars) deviance explained (%) by GLMs for the DFA-derived common hidden trends at different time lags (from 0 to 10 years). Numbers above the bars indicate the count of significant models for each specific lag. \n\n\n\n
+  To get the estimated parameters of the explanatory variables presented in Table 2 it is necessary to check the results saved in 'glm_dtw_results' and 'glm_dfa_results'.")
+}
+
+```
+
+## GLMs with highest Deviance Explained for DTW-centroids and DFA-states
+
+```{r, echo=FALSE}
+# Checking model residuals for DTW with highest DE, and plotting
+# --- Centroid 1 
+cat("===============  Centroid 1 ===============")
+model_dtw <- glm("c1 ~ riv50 + kd50 + sss50 + riv50:kd50 + riv50:sss50",
+                 family = quasi(link="identity", variance="constant"),
+                 data = env_fish_lag_dtw[[4]], na.action = na.omit)
+
+summary(model_dtw)
+de_dtw <- round((1 - model_dtw[["deviance"]] / model_dtw[["null.deviance"]]) * 100, digits = 2)
+check_collinearity(model_dtw)
+shapiro.test(model_dtw$residuals)
+var_contrib_from_full(model_dtw)
+# --- Centroid 2
+cat("\n\n =============== Centroid 2 ===============")
+model_dtw <- glm("c2 ~ kd75 + sss75",
+                 family = quasi(link="identity", variance="constant"),
+                 data = env_fish_lag_dtw[[2]], na.action = na.omit)
+
+summary(model_dtw)
+de_dtw <- round((1 - model_dtw[["deviance"]] / model_dtw[["null.deviance"]]) * 100, digits = 2)
+check_collinearity(model_dtw)
+shapiro.test(model_dtw$residuals)
+var_contrib_from_full(model_dtw)
+# Figure 
+effects_dtw_glm <- compute_glm_all_effects(model_dtw)
+vrs <- names(effects_dtw_glm) # Should be c("kd75", "sss75")
+col_line <- c("#E69F00", "darkgreen") # Custom colors
+plot_list <- list() # We create the list to store the plots
+tag_positions <- list(c(0.35, 0.975), c(0.21, 0.975))
+for(i in seq_along(vrs)) { # iterate from 1 to 3 (or the number of variables)
+  # Get data for this iteration
+  var_selected <- vrs[i]
+  color_selected <- col_line[i]
+  # Get the prediction data (from the 'effects_glm' list)
+  data_pred <- effects_dtw_glm[[var_selected]] 
+  # Get the original data (for the rug plot)
+  data_model <- model_dtw$data            
+  # Call the plotting function
+  p <- plot_glm_effect(
+    prediction_data = data_pred,
+    model_data = data_model,
+    focal_var = var_selected,
+    line_color = color_selected,
+    y_label = if (i == 1) "Predicted Value\n(DBA Centroid 2)" else NULL
+
+    )
+  # Add the tag (LETTERS)
+  plot_list[[var_selected]] <- p + labs(tag = LETTERS[i+2]) +
+    theme(
+      plot.tag.position = tag_positions[[i]],
+      plot.tag = element_text(
+        face = "bold", size = 20)
+    )
+}
+# Saving figure elements
+plot_GLM_c2 <- plot_list
+save(plot_GLM_c2,
+  file = paste0(out_dir_files, '/Fig_8_CD_c2_GLM.RData')
+  )
+# --- Centroid 3
+cat("\n\n =============== Centroid 3 ===============")
+model_dtw <- glm("c3 ~ riv25 + sss25 + riv25:sss25",
+                 family = quasi(link="identity", variance="constant"),
+                 data = env_fish_lag_dtw[[4]], na.action = na.omit)
+
+summary(model_dtw)
+de_dtw <- round((1 - model_dtw[["deviance"]] / model_dtw[["null.deviance"]]) * 100, digits = 2)
+check_collinearity(model_dtw)
+shapiro.test(model_dtw$residuals)
+var_contrib_from_full(model_dtw)
+# Figure
+# --- GLM single variables 
+effects_dtw_glm <- compute_glm_all_effects(model_dtw)
+vrs <- names(effects_dtw_glm) # Should be c("riv25", "sss75")
+col_line <- c("#56B4E9", "darkgreen") # Custom colors
+plot_list <- list() # We create the list to store the plots
+tag_positions <- list(c(0.35, 0.975), c(0.21, 0.975), c(0.21, 0.975))
+for(i in seq_along(vrs)) { # iterate from 1 to 3 (or the number of variables)
+  # Get data for this iteration
+  var_selected <- vrs[i]
+  color_selected <- col_line[i]
+  # Get the prediction data (from the 'effects_glm' list)
+  data_pred <- effects_dtw_glm[[var_selected]] 
+  # Get the original data (for the rug plot)
+  data_model <- model_dtw$data            
+  # Call the plotting function
+  p <- plot_glm_effect(
+    prediction_data = data_pred,
+    model_data = data_model,
+    focal_var = var_selected,
+    line_color = color_selected,
+    y_label = if (i == 1) "Predicted Value\n(DBA Centroid 3)" else NULL
+    )
+  # Add the tag (LETTERS)
+  plot_list[[var_selected]] <- p + labs(tag = LETTERS[i+4]) +
+    theme(
+      plot.tag.position = tag_positions[[i]],
+      plot.tag = element_text(
+        face = "bold", size = 20)
+    )
+}
+# --- GLM interaction variables 
+pi <- plot_glm_interaction(
+  model = model_dtw,
+  model_data = env_fish_lag_dtw[[4]],
+  focal_var = "riv25",
+  moderator_var = "sss25",
+  probs = c(0.1, 0.9),   # custom percentiles used inside predict_terms_auto()
+  custom_colors = c(
+    adjustcolor("darkseagreen", alpha.f = 1),
+    adjustcolor("darkgreen", alpha.f = 1)
+    ),
+  y_label = "Predicted Value\n(DBA Centroid 3)"
+  )
+plot_list[["riv25:sss25"]] <- pi + labs(tag = LETTERS[i+4+3]) +
+    theme(
+      plot.tag.position = c(0.17, 0.975),
+      plot.tag = element_text(
+        face = "bold", size = 20)
+    )
+pi2 <- plot_glm_interaction(
+  model = model_dtw,
+  model_data = env_fish_lag_dtw[[4]],
+  focal_var = "sss25",
+  moderator_var = "riv25",
+  probs = c(0.1, 0.95),   # custom percentiles used inside predict_terms_auto()
+  custom_colors = c(
+    adjustcolor("lightblue", alpha.f = 1),
+    adjustcolor("dodgerblue", alpha.f = 1)
+  ),
+  y_label = "Predicted Value\n(DBA Centroid 3)"
+)
+plot_list[["sss25:riv25"]] <- pi2 + ylab(NULL) + labs(tag = LETTERS[i+5]) +
+    theme(
+      plot.tag.position = tag_positions[[3]],,
+      plot.tag = element_text(
+        face = "bold", size = 20)
+    )
+# Saving figure elements
+plot_GLM_c3 <- plot_list
+save(plot_GLM_c3,
+  file = paste0(out_dir_files, '/Fig_8_EFG_c3_GLM.RData')
+  )
+# --- Centroid 4
+cat("\n\n =============== Centroid 4 ===============")
+model_dtw <- glm("c4 ~ soi + riv75 + kd75",
+                 family = quasi(link="identity", variance="constant"),
+                 data = env_fish_lag_dtw[[11]], na.action = na.omit)
+
+summary(model_dtw)
+de_dtw <- round((1 - model_dtw[["deviance"]] / model_dtw[["null.deviance"]]) * 100, digits = 2)
+check_collinearity(model_dtw)
+shapiro.test(model_dtw$residuals)
+var_contrib_from_full(model_dtw)
+
+# Checking model residuals for DFA with highest DE, and plotting
+# --- State 1
+cat("\n\n =============== Common hidden trend 1 ===============")
+model_dfa <- glm("s1 ~ riv75 + kd75 + wmi75",
+                 family = quasi(link="identity", variance="constant"),
+                 data = env_fish_lag_dfa[[7]], na.action = na.omit)
+
+summary(model_dfa)
+round((1 - model_dfa[["deviance"]] / model_dfa[["null.deviance"]]) * 100, digits = 2)
+check_collinearity(model_dfa)
+shapiro.test(model_dfa$residuals)
+(var_contrib_from_full(model_dfa))
+# --- State 2
+cat("\n\n =============== Common hidden trend 2 ===============")
+model_dfa <- glm("s2 ~ sam + sst25 + kd25",
+                 family = quasi(link="identity", variance="constant"),
+                 data = env_fish_lag_dfa[[8]], na.action = na.omit)
+
+summary(model_dfa)
+round((1 - model_dfa[["deviance"]] / model_dfa[["null.deviance"]]) * 100, digits = 2)
+check_collinearity(model_dfa)
+shapiro.test(model_dfa$residuals)
+(var_contrib_from_full(model_dfa))
+# Figure
+effects_dfa_glm <- compute_glm_all_effects(model_dfa)
+vrs <- names(effects_dfa_glm)
+col_line <- c("#FFB6C1", "#FF6347", "#E69F00") # sam, ssst, kd
+plot_list <- list() # We create the list to store the plots
+tag_positions <- list(c(0.35, 0.975), c(0.21, 0.975), c(0.21, 0.975))
+for(i in seq_along(vrs)) { # iterate from 1 to 3 (or the number of variables)
+  # Get data for this iteration
+  var_selected <- vrs[i]
+  color_selected <- col_line[i]
+  # Get the prediction data (from the 'effects_glm' list)
+  data_pred <- effects_dfa_glm[[var_selected]] 
+  # Get the original data (for the rug plot)
+  data_model <- model_dfa$data            
+  # Call the plotting function
+  p <- plot_glm_effect(
+    prediction_data = data_pred,
+    model_data = data_model,
+    focal_var = var_selected,
+    line_color = color_selected,
+    y_label = if (i == 1) "Predicted Value\n(DFA Common trend 2)" else NULL 
+  )
+  # Add the tag (LETTERS)
+  plot_list[[var_selected]] <- p + labs(tag = LETTERS[i+2]) +
+    theme(
+      plot.tag.position = tag_positions[[i]],
+      plot.tag = element_text(
+        face = "bold", size = 20)
+    )
+}
+# Saving figure elements
+plot_GLM_s2 <- plot_list
+save(plot_GLM_s2,
+  file = paste0(out_dir_files, '/Fig_9_CDE_s2_GLM.RData')
+  )
+
+# --- State 3
+cat("\n\n =============== Common hidden trend 3 ===============")
+model_dfa <- glm(s3 ~ soi + riv75 + kd75 + wmi75,
+                 family = quasi(link="identity", variance="constant"),
+                 data = env_fish_lag_dfa[[7]], na.action = na.omit)
+
+summary(model_dfa)
+round((1 - model_dfa[["deviance"]] / model_dfa[["null.deviance"]]) * 100, digits = 2)
+check_collinearity(model_dfa)
+shapiro.test(model_dfa$residuals)
+(var_contrib_from_full(model_dfa))
+# Figure 
+effects_dfa_glm <- compute_glm_all_effects(model_dfa)
+vrs <- names(effects_dfa_glm)
+col_line <- c("#492050", "#56B4E9", "#E69F00", "#000000") # Custom colors
+plot_list <- list() # We create the list to store the plots
+tag_positions <- list(
+  c(0.35, 0.975), c(0.21, 0.975), c(0.21, 0.975), c(0.21, 0.975)
+  )
+for(i in seq_along(vrs)) { # iterate from 1 to 4 (or the number of variables)
+  # Get data for this iteration
+  var_selected <- vrs[i]
+  color_selected <- col_line[i]
+  # Get the prediction data (from the 'effects_glm' list)
+  data_pred <- effects_dfa_glm[[var_selected]] 
+  # Get the original data (for the rug plot)
+  data_model <- model_dfa$data            
+  # Call the plotting function
+  p <- plot_glm_effect(
+    prediction_data = data_pred,
+    model_data = data_model,
+    focal_var = var_selected,
+    line_color = color_selected,
+    y_label = if (i == 1) "Predicted Value\n(DFA Common trend 3)" else NULL 
+  )
+  # Add the tag (LETTERS)
+  plot_list[[var_selected]] <- p + labs(tag = LETTERS[i+5]) +
+    theme(
+      plot.tag.position = tag_positions[[i]],
+      plot.tag = element_text(
+        face = "bold", size = 20)
+    )
+}
+# Saving figure elements
+plot_GLM_s3 <- plot_list
+save(plot_GLM_s3,
+  file = paste0(out_dir_files, '/Fig_9_FGHI_s3_GLM.RData')
+  )
+```
+
+# **GAMs analyses for i) DTW-centroids and ii) DFA-states**
+
+## Getting all possible formulas
+
+```{r, results='asis'}
+##| results: asis
+th <- c('25','50','75') # percentiles
+response <- "y"  # generic name for response variable
+gams_formulas_by_ix <- list()
+for(k in 1:length(th)){
+  # List of variables and index selection
+  vq <- c(th[k], response)
+  idx_var <- to_vec(
+    for(i in 1:length(vq)) str_which(names_col, vq[i], negate = FALSE)
+  )
+  names_var <- c('soi','sam','enso', names_col[idx_var])
+  
+  #  Combinations of climate indices
+  ci <- c('soi','sam','enso')
+  cixs <- to_list(
+    for(i in 1:length(ci)) c(combn(ci, i, simplify = FALSE))
+  )
+  
+  cixss <- list()
+  cixss[[1]] <- cixs[[2]]   # pairs
+  cixss[[1]][[4]] <- unlist(cixs[[3]]) # all
+  
+  for(ix in 1:length(cixss[[1]])){
+    cith <- paste(paste(cixss[[1]][[ix]], collapse = '|'), sep = '|')
+    names_var_ix <- names_var[-grep(pattern = cith, names_var)]
+    
+    #  Remove percentile tag
+    for(tag in th[k]) names_var_ix <- gsub(tag,'', names_var_ix)
+    
+    # Covariates and response
+    xnames <- names_var_ix
+    ynames <- response
+    
+    # Formulas with interactions
+    inter <- c("riv", "kd", "sss")
+    gams_f <- comb_gami(xnames, ynames, 4, inter)
+    
+    if(ix < length(cixss[[1]])){
+      gams_f <- gams_f[grep(pattern = paste(cixss[[1]][[4]], collapse = '|'), gams_f)]
+    }
+    gams_formulas_by_ix[[ix]] <- gams_f
+  }
+}
+# Combine all formulas into a single object
+gams_formulas <- do.call(c, gams_formulas_by_ix)
+# Transform to character
+# gams_formulas_chr <- sapply(
+#   gams_formulas, function(f) paste(deparse(f), collapse = " ")
+#   )
+clean_format <- function(x) paste(format(x), collapse = "")
+head_f <- sapply(head(gams_formulas, 3), clean_format)
+tail_f <- sapply(tail(gams_formulas, 3), clean_format)
+cat(paste(head_f, collapse = "\n\n"),
+    "\n\n... and so on until... \n\n",
+    paste(tail_f, collapse = "\n\n"),
+    sep = ""
+    )
+```
+
+## Run GAMs for DTW-centroids
+
+```{r}
+set.seed(23)
+suppressWarnings({
+gam_dtw_results <- run_gams_nested(
+  nvariables = 4,
+  env_fish_lag = env_fish_lag_dtw,
+  lag = lag, # lags
+  th = th, # percentiles
+  gams_formulas = gams_formulas, # list
+  fmly = list(quasi(link = "identity", variance = "constant")), # family
+  add_th_suffix = add_th_suffix, # function
+  try_gam_stepwise = try_gam_stepwise, # function
+  p_threshold = 0.05, # ADDED
+  concurvity_threshold = 0.3, # ADDED
+  method = "REML")
+})
+```
+
+## Save summaries of significant models
+
+```{r}
+outfile <- paste0(out_dir_files, '/SupplementaryMaterial_S14_GAMs_DTW.txt')
+sink(outfile, append = FALSE)
+print_gam_nested_results(gam_dtw_results)
+sink()
+closeAllConnections()
+```
+
+## Run GAMs for DFA-states
+
+```{r}
+set.seed(23)
+suppressWarnings({
+gam_dfa_results <- run_gams_nested(
+  nvariables = 3,
+  env_fish_lag = env_fish_lag_dfa,
+  lag = lag, # lags
+  th = th, # percentiles
+  gams_formulas = gams_formulas, # list
+  fmly = list(quasi(link = "identity", variance = "constant")), # family
+  add_th_suffix = add_th_suffix, # function
+  try_gam_stepwise = try_gam_stepwise, # function
+  p_threshold = 0.05, # ADDED
+  concurvity_threshold = 0.3, # ADDED
+  method = "REML")
+})
+```
+
+## Save summaries of significant models
+
+```{r}
+outfile <- paste0(out_dir_files, '/SupplementaryMaterial_S15_GAMs_DFA.txt')
+sink(outfile, append = FALSE)
+print_gam_nested_results(gam_dfa_results)
+sink()
+closeAllConnections()
+```
+
+## Save the outputs as R dataset objects
+
+```{r}
+# For DTW centroids as response variable
+save(
+  gam_dtw_results,
+  file = file.path(out_dir_files,'GAMs_DTW_results.RData')
+  )
+# For DFA states as response variable
+save(
+  gam_dfa_results,
+  file = file.path(out_dir_files, 'GAMs_DFA_results.RData')
+  )
+```
+
+# **Load GAMs results, create subplot elements and plot lags and DE for centroids and common hidden trends**
+
+```{r, results = 'asis', fig.width=12, fig.height=9}
+# --- Loading results for DFA states and DTW centroids
+load(paste0(out_dir_files, '/GAMs_DTW_results.RData'))
+load(paste0(out_dir_files, '/GAMs_DFA_results.RData'))
+# Centroids
+c1 <- tables_states_gam(gam_dtw_results[['c1']], '1')
+c2 <- tables_states_gam(gam_dtw_results[['c2']], '2')
+c3 <- tables_states_gam(gam_dtw_results[['c3']], '3')
+c4 <- tables_states_gam(gam_dtw_results[['c4']], '4')
+# States
+s1 <- tables_states_gam(gam_dfa_results[['s1']], '1')
+s2 <- tables_states_gam(gam_dfa_results[['s2']], '2')
+s3 <- tables_states_gam(gam_dfa_results[['s3']], '3')
+# --- Getting list by percentile
+percentiles <- c("th25", "th50", "th75")
+# --- Function calls "states" and "centroids" lists (s1, s2, s3, and c1, c2, c3, c4)
+stat_percentiles_list <- combine_by_percentiles(percentiles, prefix = "s", n_elements = 3)
+cent_percentiles_list <- combine_by_percentiles(percentiles, prefix = "c", n_elements = 4)
+
+# --- Getting each percentile as dataframe for "states" and "centroids"
+# Centroids
+cent_th25 <- cent_percentiles_list[["th25"]]
+cent_th50 <- cent_percentiles_list[["th50"]]
+cent_th75 <- cent_percentiles_list[["th75"]]
+# States
+stat_th25 <- stat_percentiles_list[["th25"]]
+stat_th50 <- stat_percentiles_list[["th50"]]
+stat_th75 <- stat_percentiles_list[["th75"]]
+
+# --- Create each subplot element
+# Centroids
+c25 <- plot_de_lag_annotated(cent_th25, "25th", "A", fill_label = NULL)
+c50 <- plot_de_lag_annotated(cent_th50, "50th", "B", fill_label = NULL)
+c75 <- plot_de_lag_annotated(cent_th75, "75th", "C", show_legend = TRUE, fill_label = "Centroids", 0.7, 0.87)
+# States
+s25 <- plot_de_lag_annotated(stat_th25, "25th", "A", fill_label = NULL)
+s50 <- plot_de_lag_annotated(stat_th50, "50th", "B", fill_label = NULL)
+s75 <- plot_de_lag_annotated(stat_th75, "75th", "C", show_legend = TRUE, fill_label = "Trends", 0.92, 0.9)
+
+# Merging plots into a single one and export it as PDF
+# Centroids
+file_path <- file.path(out_dir_fig, "Fig_S10")
+# --- as PDF
+pdf(paste0(file_path, ".pdf"), width = 12, height = 9, colormodel = "cmyk")
+par(mfcol=c(1,1))
+figure <- ggarrange(c25, c50, c75,
+                    ncol = 3, nrow = 1, common.legend = F)
+f_dtw <- annotate_figure(
+  figure, 
+  bottom = textGrob(
+    expression(paste("Lag (years)")),
+    rot = 0, vjust = 0.3,
+    gp = gpar(cex = 1.5, fontfamily = "Times" , fontsize = 12)
+  ),
+  left = textGrob(
+    expression(paste("Deviance explained (%)")),
+    rot = 90, vjust = 1.3,
+    gp = gpar(cex = 1.5, fontfamily = "Times" , fontsize = 12)
+  )) 
+print(f_dtw)
+invisible(dev.off())
+# --- as PNG
+ragg::agg_png(paste0(file_path, ".png"), width = 12, height = 9, units = "in", res = 600)
+print(f_dtw)
+invisible(dev.off())
+# HTML output
+if (knitr::is_html_output()) {
+  cat("\n\n")
+  print(f_dtw)
+  cat("\n\n**Figure S10.-** Average (triangles) and maximum (bars) deviance explained (%) by GAMs for the DTW-derived centroids 1-4 at different time lags (from 0 to 10 years). Numbers above the bars indicate the count of significant models for each specific lag. \n\n")
+}
+
+# States
+file_path <- file.path(out_dir_fig, "Fig_S11")
+# --- as PDF
+pdf(paste0(file_path, ".pdf"), width = 12, height = 9, colormodel = "cmyk")
+par(mfcol=c(1,1))
+figure <- ggarrange(s25, s50, s75,
+                    ncol = 3, nrow = 1, common.legend = F)
+f_dtw <- annotate_figure(
+  figure, 
+  bottom = textGrob(
+    expression(paste("Lag (years)")),
+    rot = 0, vjust = 0.3,
+    gp = gpar(cex = 1.5, fontfamily = "Times" , fontsize = 12)
+  ),
+  left = textGrob(
+    expression(paste("Deviance explained (%)")),
+    rot = 90, vjust = 1.3,
+    gp = gpar(cex = 1.5, fontfamily = "Times" , fontsize = 12)
+  )) 
+print(f_dtw)
+invisible(dev.off())
+# --- as PNG
+ragg::agg_png(paste0(file_path, ".png"), width = 12, height = 9, units = "in", res = 600)
+print(f_dtw)
+invisible(dev.off())
+# HTML output
+if (knitr::is_html_output()) {
+  cat("\n\n")
+  print(f_dtw)
+  cat("\n\n**Figure S11.-** Average (triangles) and maximum (bars) deviance explained (%) by GAMs for the DFA-derived common hidden trends at different time lags (from 0 to 10 years). Numbers above the bars indicate the count of significant models for each specific lag.\n\n\n\n
+  To get the estimated parameters of the explanatory variables presented in Table 3 it is necessary to check the results saved in 'gam_dtw_results' and 'gam_dfa_results.'")
+}
+```
+
+## GAMs with highest Deviance Explained for DTW-centroids and DFA-states
+
+```{r, results='hold'}
+set.seed(123)
+# Checking model residuals for DTW with highest DE, and plotting
+# --- Centroid 1
+cat("=============== Centroid 1 ===============")
+model_dtw <- gam(
+  (c1 ~ s(sst25, k = 4, bs = "cr") + s(kd25, k = 4, bs = "cr")),
+  family = quasi(link="identity", variance="constant"),
+  data = env_fish_lag_dtw[[4]], na.action = na.omit, method = "REML"
+  )
+summary(model_dtw)
+de_dtw <- round((1 - model_dtw[["deviance"]] / model_dtw[["null.deviance"]]) * 100, digits = 2)
+concurvity(model_dtw)
+shapiro.test(model_dtw$residuals)
+var_contrib_from_full_gam(model_dtw)
+# Figure 
+vrs <- names(model_dtw[["var.summary"]]) # 
+col_line <- c("#FF6347", "#E69F00") # sst, kd
+plot_list <- list() # We create the list to store the plots
+tag_positions <- list(c(0.35, 0.975), c(0.21, 0.975))
+for(i in seq_along(vrs)) { # iterate from 1 to the number of variables
+  # Get data for this iteration
+  var_selected <- vrs[i]
+  color_selected <- col_line[i]
+  # Call the plotting function
+  p <- plot_gam_effect(
+    model_dtw, var_selected, color_selected,
+    y_label = if (i == 1) "Predicted Value\n(DBA Centroid 1)" else NULL
+  )
+  # Add the tag (LETTERS)
+  plot_list[[var_selected]] <- p + labs(tag = LETTERS[i]) +
+    theme(
+      plot.tag.position = tag_positions[[i]],
+      plot.tag = element_text(
+        face = "bold", size = 20)
+      )
+}
+# Saving figure elements
+plot_GAM_c1 <- plot_list
+save(plot_GAM_c1,
+  file = paste0("outputs/files/",'Fig_8_AB_c1_GAM.RData')
+  )
+# --- Centroid 4
+cat("\n\n =============== Centroid 4 ===============")
+model_dtw <- gam(
+  (c4 ~ s(sam, k = 4, bs = "cr") + s(kd75, k = 4, bs = "cr")),
+  family = quasi(link="identity", variance="constant"),
+  data = env_fish_lag_dtw[[11]], na.action = na.omit, method = "REML"
+  )
+summary(model_dtw)
+de_dtw <- round((1 - model_dtw[["deviance"]] / model_dtw[["null.deviance"]]) * 100, digits = 2)
+concurvity(model_dtw)
+shapiro.test(model_dtw$residuals)
+var_contrib_from_full_gam(model_dtw)
+# Figure 
+vrs <- names(model_dtw[["var.summary"]]) # 
+col_line <- c("#FFB6C1", "#E69F00") # sam, kd
+plot_list <- list() # We create the list to store the plots
+tag_positions <- list(c(0.35, 0.975), c(0.21, 0.975))
+for(i in seq_along(vrs)) { # iterate from 1 to the number of variables
+  # Get data for this iteration
+  var_selected <- vrs[i]
+  color_selected <- col_line[i]
+  # Call the plotting function
+  p <- plot_gam_effect(
+    model_dtw, var_selected, color_selected,
+    y_label = if (i == 1) "Predicted Value\n(DBA Centroid 4)" else NULL
+  )
+  # Add the tag (LETTERS)
+  plot_list[[var_selected]] <- p + labs(tag = LETTERS[i+7]) +
+    theme(
+      plot.tag.position = tag_positions[[i]],
+      plot.tag = element_text(
+        face = "bold", size = 20)
+      )
+}
+# Saving figure elements
+plot_GAM_c4 <- plot_list
+save(plot_GAM_c4,
+  file = paste0("outputs/files/",'Fig_8_HI_c4_GAM.RData')
+  )
+
+# Checking model residuals for DFA with highest DE, and plotting
+# --- State 1
+cat("\n\n =============== Common hidden trend 1 ===============")
+model_dfa <- gam(
+  (s1 ~ s(soi, k = 4, bs = "cr") + s(kd50, k = 4, bs = "cr")),
+  family = quasi(link="identity", variance="constant"),
+  data = env_fish_lag_dfa[[10]], na.action = na.omit, method = "REML"
+  )
+summary(model_dfa)
+de_dfa <- round((1 - model_dfa[["deviance"]] / model_dfa[["null.deviance"]]) * 100, digits = 2)
+concurvity(model_dfa)
+shapiro.test(model_dfa$residuals)
+var_contrib_from_full_gam(model_dfa)
+# Figure
+vrs <- names(model_dfa[["var.summary"]]) # 
+col_line <- c("#492050", "#E69F00") # soi, kd
+plot_list <- list() # We create the list to store the plots
+tag_positions <- list(c(0.35, 0.975), c(0.21, 0.975))
+for(i in seq_along(vrs)) { # iterate from 1 to the number of variables
+  # Get data for this iteration
+  var_selected <- vrs[i]
+  color_selected <- col_line[i]
+  # Call the plotting function
+  p <- plot_gam_effect(
+    model_dfa, var_selected, color_selected,
+    y_label = if (i == 1) "Predicted Value\n(DFA Common trend 1)" else NULL
+  )
+  # Add the tag (LETTERS)
+  plot_list[[var_selected]] <- p + labs(tag = LETTERS[i]) +
+    theme(
+      plot.tag.position = tag_positions[[i]],
+      plot.tag = element_text(
+        face = "bold", size = 20)
+      )
+}
+# Saving figure elements
+plot_GAM_s1 <- plot_list
+save(plot_GAM_s1,
+  file = paste0("outputs/files/",'Fig_9_AB_s1_GAM.RData')
+  )
+# --- State 2
+cat("\n\n =============== Common hidden trend 2 ===============")
+model_dfa <- gam(
+  (s2 ~ s(sss25, k = 4, bs = "cr") + s(sst25, k = 4, bs = "cr")),
+  family = quasi(link="identity", variance="constant"),
+  data = env_fish_lag_dfa[[10]], na.action = na.omit, method = "REML"
+  )
+summary(model_dfa)
+de_dfa <- round((1 - model_dfa[["deviance"]] / model_dfa[["null.deviance"]]) * 100, digits = 2)
+concurvity(model_dfa)
+shapiro.test(model_dfa$residuals)
+var_contrib_from_full_gam(model_dfa)
+# --- State 3
+cat("\n\n =============== Common hidden trend 3 ===============")
+model_dfa <- gam(
+  (s3 ~ s(kd75, k = 4, bs = "cr") + s(sss75, k = 4, bs = "cr")),
+  family = quasi(link="identity", variance="constant"),
+  data = env_fish_lag_dfa[[7]], na.action = na.omit, method = "REML"
+  )
+summary(model_dfa)
+de_dfa <- round((1 - model_dfa[["deviance"]] / model_dfa[["null.deviance"]]) * 100, digits = 2)
+concurvity(model_dfa)
+shapiro.test(model_dfa$residuals)
+var_contrib_from_full_gam(model_dfa)
+
+```
+
+# **Response plots of explanatory variables retained in the best-fitting GLM and GAM models for both centroids (Figure 8) and common hidden trends (Figure 9)**
+
+```{r, fig.width=12, fig.height=9}
+#  CENTROIDS ----
+#path_plots <- paste0("out_dir_fig")
+load(paste0(out_dir_files, '/Fig_8_AB_c1_GAM.RData'))
+load(paste0(out_dir_files, '/Fig_8_CD_c2_GLM.RData'))
+load(paste0(out_dir_files, '/Fig_8_EFG_c3_GLM.RData'))
+load(paste0(out_dir_files, '/Fig_8_HI_c4_GAM.RData'))
+nc = 4 # number of columns
+row1 <- arrangeGrob(grobs = plot_GAM_c1, nrow = 1, ncol = nc)
+row2 <- arrangeGrob(grobs = plot_GLM_c2, nrow = 1, ncol = nc)
+row3 <- arrangeGrob(grobs = plot_GLM_c3[c(1,2,4)], nrow = 1, ncol = nc)
+row4 <- arrangeGrob(grobs = plot_GAM_c4, nrow = 1, ncol = nc)
+# Save figure
+file_path <- file.path(out_dir_fig, "Fig_8")
+# --- as PDF
+pdf(paste0(file_path, ".pdf"), width = 12, height = 9, colormodel = "cmyk")
+par(mfcol=c(1,1))
+final_dtw <- grid.arrange(grobs = list(row1, row2, row3, row4), nrow = 4,
+                          width = c(1, 1, 1))
+grid::grid.draw(final_dtw)
+invisible(dev.off())
+# --- as PNG
+ragg::agg_png(paste0(file_path, ".png"), width = 12, height = 9, units = "in", res = 600)
+grid::grid.draw(final_dtw)
+invisible(dev.off())
+# HTML output
+file_png <- paste0(file_path,".png")
+if (knitr::is_html_output() && file.exists(file_png)) {
+  knitr::include_graphics(file_png)
+}
+```
+
+**Figure 8.-** Response plots for the best-fitting GLMs and GAMs obtained for the DTW-derived centroids 1–4. Each row corresponds to a centroid, and each panel shows the partial effect of the anomaly of one explanatory variable (or interaction) on its predicted values, based on the selected model for that centroid (see details about lags and percentiles in Tables 2 and 3). Solid lines represent the estimated mean effect, and shaded areas denote the 95% confidence intervals. Rug marks along the x-axis indicate the distribution of observed covariate values. Abbreviations of environmental explanatory variables are defined in Table 1
+
+```{r}
+#  TRENDS ----
+load(paste0(out_dir_files, '/Fig_9_AB_s1_GAM.RData'))
+load(paste0(out_dir_files, '/Fig_9_CDE_s2_GLM.RData'))
+load(paste0(out_dir_files, '/Fig_9_FGHI_s3_GLM.RData'))
+row1 <- arrangeGrob(grobs = plot_GAM_s1, nrow = 1, ncol = nc)
+row2 <- arrangeGrob(grobs = plot_GLM_s2, nrow = 1, ncol = nc)
+row3 <- arrangeGrob(grobs = plot_GLM_s3, nrow = 1, ncol = nc)
+# Save figure
+file_path <- file.path(out_dir_fig, "Fig_9")
+# --- as PDF
+pdf(paste0(file_path, ".pdf"), width = 12, height = 9, colormodel = "cmyk")
+par(mfcol=c(1,1))
+final_dfa <- grid.arrange(grobs = list(row1, row2, row3), nrow = 4,
+                          )
+grid::grid.draw(final_dfa)
+invisible(dev.off())
+# --- as PNG
+ragg::agg_png(paste0(file_path, ".png"), width = 12, height = 9, units = "in", res = 600)
+grid::grid.draw(grid.arrange(grobs = list(row1, row2, row3), nrow = 3,
+                          ))
+invisible(dev.off())
+# HTML output
+file_png <- paste0(file_path,".png")
+if (knitr::is_html_output() && file.exists(file_png)) {
+  knitr::include_graphics(file_png)
+}
+```
+
+**Figure 9.-** Response plots for the best-fitting GLMs and GAMs obtained for the DFA-derived common hidden trends 1–3. Each row corresponds to a common trend, and each panel shows the partial effect of the anomaly of one explanatory variable on its predicted values, based on the selected model for that common trend (see details about lags and percentiles in Tables 2 and 3). Solid lines represent the estimated mean effect, and shaded areas denote the 95% confidence intervals. Rug marks along the x-axis indicate the distribution of observed covariate values. Abbreviations of environmental explanatory variables are defined in Table 1.
+
+# **Previous section**
+
+::: callout-note
+## To return to previous analyses, focusing on DTW and DFA techniques:
+
+[Go to Code 1 of 2: DTW and DFA analyses](1_dtw_dfa_analyses.html){.btn .btn-outline-primary role="button"}
+:::

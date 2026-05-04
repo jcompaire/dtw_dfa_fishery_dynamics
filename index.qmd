@@ -1,0 +1,38 @@
+---
+title: "Dynamic Time Warping, Dynamic Factor Analyses, Generalized Linear and Additive Models applied to multispecies fisheries in the Southwestern Atlantic"
+---
+
+::: {.callout-note appearance="simple"}
+### **Jesus C. Compaire** \| {{< fa fish >}} {{< fa fish >}} {{< fa fish >}} | [{{< fa envelope >}}](mailto:jesus.canocompaire@uca.es) \| [{{< fa brands github >}}](https://github.com/jcompaire)
+Assistant Researcher - **CESIMAR (CONICET)** \| Assistant Professor - **UNPSJB**
+:::
+
+## **Project Description**
+
+### Multiscale fishery variability
+
+This repository contains the code to replicate the statistical analyses and figures presented in the manuscript:
+
+> **Compaire, J.C., Irigoyen, A.J., Simionato, C.G. & Acha, E.M. (2026).** Multiscale environmental forcing of multispecies fishery dynamics across climate timescales. Submitted to *Fisheries Oceanography*. [{{< fa link >}} DOI: https://doi.org/XXXXX](https://doi.org/XXXXX)
+
+------------------------------------------------------------------------
+
+## **Analysis Sections**
+
+::: {layout-ncol=2}
+::: {.callout-tip}
+### Phase 1: Timeseries
+**Fisheries landings patterns**  
+Explore landing trends using Dynamic Time Warping (DTW) and Dynamic Factor Analysis (DFA).
+
+[Code 1 of 2: DTW & DFA](1_dtw_dfa_analyses.html){.btn .btn-outline-primary .btn-sm role="button"}
+:::
+
+::: {.callout-tip}
+### Phase 2: Modeling
+**Environmental drivers**  
+Analyze the influence of environmental variability using GLM and GAM frameworks.
+
+[Code 2 of 2: GLM & GAM](2_glm_gam_analyses.html){.btn .btn-outline-primary .btn-sm role="button"}
+:::
+:::::

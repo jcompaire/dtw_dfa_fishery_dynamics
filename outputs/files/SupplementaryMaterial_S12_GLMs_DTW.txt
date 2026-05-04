@@ -1,0 +1,1876 @@
+
+==============================
+RESPONSE: c1 
+==============================
+
+>> Percentile: 25 
+--------------------------------------
+
+--- LAG: lag_2  ---
+
+Model 1 of 1 
+Eq: 8 
+DE: 37.99  | VIF: 3.33  | Var: riv25:kd25 
+Backward: "c1 ~ riv25 + kd25 + riv25:kd25" 
+
+ [1] "percentile: 25; family:quasi(link=identity); lag:02; eq:08; DE:37.99"           
+ [2] "original:  c1 ~ enso + riv25 + kd25 + riv25:kd25 "                              
+ [3] "backward:  c1 ~ riv25 + kd25 + riv25:kd25 "                                     
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "              Estimate Std. Error t value Pr(>|t|)   "                          
+[10] "(Intercept) -5.596e-01  1.465e-01  -3.819   0.0010 **"                          
+[11] "riv25       -5.334e-05  3.735e-05  -1.428   0.1679   "                          
+[12] "kd25         1.522e+00  1.387e+01   0.110   0.9136   "                          
+[13] "riv25:kd25   1.136e-02  4.021e-03   2.824   0.0102 * "                          
+[14] "---"                                                                            
+[15] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[16] ""                                                                               
+[17] "(Dispersion parameter for quasi family taken to be 0.3385498)"                  
+[18] ""                                                                               
+[19] "    Null deviance: 11.4650  on 24  degrees of freedom"                          
+[20] "Residual deviance:  7.1095  on 21  degrees of freedom"                          
+[21] "  (13 observations deleted due to missingness)"                                 
+[22] "AIC: NA"                                                                        
+[23] ""                                                                               
+[24] "Number of Fisher Scoring iterations: 2"                                         
+[25] ""                                                                               
+[26] "# Check for Multicollinearity"                                                  
+[27] ""                                                                               
+[28] "Low Correlation"                                                                
+[29] ""                                                                               
+[30] "       Term  VIF   VIF 95% CI adj. VIF Tolerance Tolerance 95% CI"              
+[31] "      riv25 2.86 [1.87, 4.94]     1.69      0.35     [0.20, 0.53]"              
+[32] "       kd25 1.52 [1.16, 2.66]     1.23      0.66     [0.38, 0.86]"              
+[33] " riv25:kd25 3.33 [2.14, 5.79]     1.83      0.30     [0.17, 0.47]"              
+[34] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+--- LAG: lag_3  ---
+
+Model 1 of 2 
+Eq: 4 
+DE: 28.49  | VIF: 0  | Var: kd25 
+Backward: "c1 ~ kd25" 
+
+ [1] "percentile: 25; family:quasi(link=identity); lag:03; eq:04; DE:28.49"           
+ [2] "original:  c1 ~ enso + kd25 "                                                   
+ [3] "backward:  c1 ~ kd25 "                                                          
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "            Estimate Std. Error t value Pr(>|t|)    "                           
+[10] "(Intercept)  -0.4867     0.1245  -3.908 0.000754 ***"                           
+[11] "kd25         31.4065    10.6094   2.960 0.007230 ** "                           
+[12] "---"                                                                            
+[13] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[14] ""                                                                               
+[15] "(Dispersion parameter for quasi family taken to be 0.2892163)"                  
+[16] ""                                                                               
+[17] "    Null deviance: 8.8972  on 23  degrees of freedom"                           
+[18] "Residual deviance: 6.3628  on 22  degrees of freedom"                           
+[19] "  (14 observations deleted due to missingness)"                                 
+[20] "AIC: NA"                                                                        
+[21] ""                                                                               
+[22] "Number of Fisher Scoring iterations: 2"                                         
+[23] ""                                                                               
+[24] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+Model 2 of 2 
+Eq: 11 
+DE: 41.59  | VIF: 1.1  | Var: sst25 
+Backward: "c1 ~ sst25 + kd25" 
+
+ [1] "percentile: 25; family:quasi(link=identity); lag:03; eq:11; DE:41.59"           
+ [2] "original:  c1 ~ enso + sst25 + kd25 "                                           
+ [3] "backward:  c1 ~ sst25 + kd25 "                                                  
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "            Estimate Std. Error t value Pr(>|t|)    "                           
+[10] "(Intercept)  -0.5024     0.1154  -4.353 0.000279 ***"                           
+[11] "sst25        -0.3343     0.1540  -2.170 0.041606 *  "                           
+[12] "kd25         38.2948    10.3146   3.713 0.001289 ** "                           
+[13] "---"                                                                            
+[14] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[15] ""                                                                               
+[16] "(Dispersion parameter for quasi family taken to be 0.2474833)"                  
+[17] ""                                                                               
+[18] "    Null deviance: 8.8972  on 23  degrees of freedom"                           
+[19] "Residual deviance: 5.1971  on 21  degrees of freedom"                           
+[20] "  (14 observations deleted due to missingness)"                                 
+[21] "AIC: NA"                                                                        
+[22] ""                                                                               
+[23] "Number of Fisher Scoring iterations: 2"                                         
+[24] ""                                                                               
+[25] "# Check for Multicollinearity"                                                  
+[26] ""                                                                               
+[27] "Low Correlation"                                                                
+[28] ""                                                                               
+[29] "  Term  VIF   VIF 95% CI adj. VIF Tolerance Tolerance 95% CI"                   
+[30] " sst25 1.10 [1.00, 4.97]     1.05      0.91     [0.20, 1.00]"                   
+[31] "  kd25 1.10 [1.00, 4.97]     1.05      0.91     [0.20, 1.00]"                   
+[32] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+--- LAG: lag_4  ---
+
+Model 1 of 1 
+Eq: 4 
+DE: 18.65  | VIF: 0  | Var: kd25 
+Backward: "c1 ~ kd25" 
+
+ [1] "percentile: 25; family:quasi(link=identity); lag:04; eq:04; DE:18.65"           
+ [2] "original:  c1 ~ enso + kd25 "                                                   
+ [3] "backward:  c1 ~ kd25 "                                                          
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "            Estimate Std. Error t value Pr(>|t|)   "                            
+[10] "(Intercept)  -0.4894     0.1312  -3.731  0.00123 **"                            
+[11] "kd25         24.0524    10.9603   2.194  0.03959 * "                            
+[12] "---"                                                                            
+[13] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[14] ""                                                                               
+[15] "(Dispersion parameter for quasi family taken to be 0.308125)"                   
+[16] ""                                                                               
+[17] "    Null deviance: 7.9545  on 22  degrees of freedom"                           
+[18] "Residual deviance: 6.4706  on 21  degrees of freedom"                           
+[19] "  (15 observations deleted due to missingness)"                                 
+[20] "AIC: NA"                                                                        
+[21] ""                                                                               
+[22] "Number of Fisher Scoring iterations: 2"                                         
+[23] ""                                                                               
+[24] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+--- LAG: lag_7  ---
+
+Model 1 of 2 
+Eq: 36 
+DE: 19.93  | VIF: 0  | Var: kd25 
+Backward: "c1 ~ kd25" 
+
+ [1] "percentile: 25; family:quasi(link=identity); lag:07; eq:36; DE:19.93"           
+ [2] "original:  c1 ~ sam + kd25 "                                                    
+ [3] "backward:  c1 ~ kd25 "                                                          
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "            Estimate Std. Error t value Pr(>|t|)   "                            
+[10] "(Intercept)  -0.4980     0.1412  -3.526  0.00241 **"                            
+[11] "kd25         26.0591    12.3124   2.116  0.04850 * "                            
+[12] "---"                                                                            
+[13] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[14] ""                                                                               
+[15] "(Dispersion parameter for quasi family taken to be 0.3387232)"                  
+[16] ""                                                                               
+[17] "    Null deviance: 7.6143  on 19  degrees of freedom"                           
+[18] "Residual deviance: 6.0970  on 18  degrees of freedom"                           
+[19] "  (18 observations deleted due to missingness)"                                 
+[20] "AIC: NA"                                                                        
+[21] ""                                                                               
+[22] "Number of Fisher Scoring iterations: 2"                                         
+[23] ""                                                                               
+[24] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+Model 2 of 2 
+Eq: 11 
+DE: 38.06  | VIF: 1.03  | Var: sst25 
+Backward: "c1 ~ sst25 + kd25" 
+
+ [1] "percentile: 25; family:quasi(link=identity); lag:07; eq:11; DE:38.06"           
+ [2] "original:  c1 ~ enso + sst25 + kd25 "                                           
+ [3] "backward:  c1 ~ sst25 + kd25 "                                                  
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "            Estimate Std. Error t value Pr(>|t|)    "                           
+[10] "(Intercept)  -0.5088     0.1279  -3.978 0.000973 ***"                           
+[11] "sst25        -0.4917     0.2204  -2.231 0.039469 *  "                           
+[12] "kd25         30.6787    11.3340   2.707 0.014961 *  "                           
+[13] "---"                                                                            
+[14] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[15] ""                                                                               
+[16] "(Dispersion parameter for quasi family taken to be 0.2774444)"                  
+[17] ""                                                                               
+[18] "    Null deviance: 7.6143  on 19  degrees of freedom"                           
+[19] "Residual deviance: 4.7166  on 17  degrees of freedom"                           
+[20] "  (18 observations deleted due to missingness)"                                 
+[21] "AIC: NA"                                                                        
+[22] ""                                                                               
+[23] "Number of Fisher Scoring iterations: 2"                                         
+[24] ""                                                                               
+[25] "# Check for Multicollinearity"                                                  
+[26] ""                                                                               
+[27] "Low Correlation"                                                                
+[28] ""                                                                               
+[29] "  Term  VIF     VIF 95% CI adj. VIF Tolerance Tolerance 95% CI"                 
+[30] " sst25 1.03 [1.00, 868.90]     1.02      0.97     [0.00, 1.00]"                 
+[31] "  kd25 1.03 [1.00, 868.90]     1.02      0.97     [0.00, 1.00]"                 
+[32] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+--- LAG: lag_8  ---
+
+Model 1 of 1 
+Eq: 4 
+DE: 29.24  | VIF: 0  | Var: kd25 
+Backward: "c1 ~ kd25" 
+
+ [1] "percentile: 25; family:quasi(link=identity); lag:08; eq:04; DE:29.24"           
+ [2] "original:  c1 ~ enso + kd25 "                                                   
+ [3] "backward:  c1 ~ kd25 "                                                          
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "            Estimate Std. Error t value Pr(>|t|)   "                            
+[10] "(Intercept)  -0.5186     0.1384  -3.746  0.00161 **"                            
+[11] "kd25         31.7753    11.9880   2.651  0.01682 * "                            
+[12] "---"                                                                            
+[13] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[14] ""                                                                               
+[15] "(Dispersion parameter for quasi family taken to be 0.316647)"                   
+[16] ""                                                                               
+[17] "    Null deviance: 7.6077  on 18  degrees of freedom"                           
+[18] "Residual deviance: 5.3830  on 17  degrees of freedom"                           
+[19] "  (19 observations deleted due to missingness)"                                 
+[20] "AIC: NA"                                                                        
+[21] ""                                                                               
+[22] "Number of Fisher Scoring iterations: 2"                                         
+[23] ""                                                                               
+[24] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+>> Percentile: 50 
+--------------------------------------
+
+--- LAG: lag_3  ---
+
+Model 1 of 3 
+Eq: 4 
+DE: 24.08  | VIF: 0  | Var: kd50 
+Backward: "c1 ~ kd50" 
+
+ [1] "percentile: 50; family:quasi(link=identity); lag:03; eq:04; DE:24.08"           
+ [2] "original:  c1 ~ enso + kd50 "                                                   
+ [3] "backward:  c1 ~ kd50 "                                                          
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "            Estimate Std. Error t value Pr(>|t|)   "                            
+[10] "(Intercept)  -0.3921     0.1170  -3.350   0.0029 **"                            
+[11] "kd50         25.1639     9.5260   2.642   0.0149 * "                            
+[12] "---"                                                                            
+[13] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[14] ""                                                                               
+[15] "(Dispersion parameter for quasi family taken to be 0.3070323)"                  
+[16] ""                                                                               
+[17] "    Null deviance: 8.8972  on 23  degrees of freedom"                           
+[18] "Residual deviance: 6.7547  on 22  degrees of freedom"                           
+[19] "  (14 observations deleted due to missingness)"                                 
+[20] "AIC: NA"                                                                        
+[21] ""                                                                               
+[22] "Number of Fisher Scoring iterations: 2"                                         
+[23] ""                                                                               
+[24] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+Model 2 of 3 
+Eq: 20 
+DE: 52.9  | VIF: 3.38  | Var: riv50:kd50 
+Backward: "c1 ~ riv50 + kd50 + sss50 + riv50:kd50 + riv50:sss50" 
+
+ [1] "percentile: 50; family:quasi(link=identity); lag:03; eq:20; DE:52.9"            
+ [2] "original:  c1 ~ enso + riv50 + kd50 + sss50 + riv50:kd50 + riv50:sss50 "        
+ [3] "backward:  c1 ~ riv50 + kd50 + sss50 + riv50:kd50 + riv50:sss50 "               
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "              Estimate Std. Error t value Pr(>|t|)   "                          
+[10] "(Intercept) -4.727e-01  1.448e-01  -3.265   0.0043 **"                          
+[11] "riv50       -2.945e-05  2.542e-05  -1.158   0.2618   "                          
+[12] "kd50         6.774e-01  1.201e+01   0.056   0.9556   "                          
+[13] "sss50       -2.981e+00  1.227e+00  -2.429   0.0259 * "                          
+[14] "riv50:kd50   8.960e-03  3.861e-03   2.321   0.0322 * "                          
+[15] "riv50:sss50  8.505e-04  3.418e-04   2.488   0.0229 * "                          
+[16] "---"                                                                            
+[17] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[18] ""                                                                               
+[19] "(Dispersion parameter for quasi family taken to be 0.2327936)"                  
+[20] ""                                                                               
+[21] "    Null deviance: 8.8972  on 23  degrees of freedom"                           
+[22] "Residual deviance: 4.1903  on 18  degrees of freedom"                           
+[23] "  (14 observations deleted due to missingness)"                                 
+[24] "AIC: NA"                                                                        
+[25] ""                                                                               
+[26] "Number of Fisher Scoring iterations: 2"                                         
+[27] ""                                                                               
+[28] "# Check for Multicollinearity"                                                  
+[29] ""                                                                               
+[30] "Low Correlation"                                                                
+[31] ""                                                                               
+[32] "        Term  VIF   VIF 95% CI adj. VIF Tolerance Tolerance 95% CI"             
+[33] "       riv50 3.22 [2.15, 5.28]     1.80      0.31     [0.19, 0.46]"             
+[34] "        kd50 2.10 [1.50, 3.39]     1.45      0.48     [0.30, 0.67]"             
+[35] "       sss50 2.08 [1.49, 3.36]     1.44      0.48     [0.30, 0.67]"             
+[36] "  riv50:kd50 3.38 [2.25, 5.55]     1.84      0.30     [0.18, 0.45]"             
+[37] " riv50:sss50 2.61 [1.80, 4.25]     1.62      0.38     [0.24, 0.56]"             
+[38] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+Model 3 of 3 
+Eq: 11 
+DE: 37.6  | VIF: 1.05  | Var: sst50 
+Backward: "c1 ~ sst50 + kd50" 
+
+ [1] "percentile: 50; family:quasi(link=identity); lag:03; eq:11; DE:37.6"            
+ [2] "original:  c1 ~ enso + sst50 + kd50 "                                           
+ [3] "backward:  c1 ~ sst50 + kd50 "                                                  
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "            Estimate Std. Error t value Pr(>|t|)    "                           
+[10] "(Intercept)  -0.4212     0.1095  -3.848 0.000934 ***"                           
+[11] "sst50        -0.3565     0.1671  -2.133 0.044908 *  "                           
+[12] "kd50         29.3827     9.0583   3.244 0.003888 ** "                           
+[13] "---"                                                                            
+[14] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[15] ""                                                                               
+[16] "(Dispersion parameter for quasi family taken to be 0.264386)"                   
+[17] ""                                                                               
+[18] "    Null deviance: 8.8972  on 23  degrees of freedom"                           
+[19] "Residual deviance: 5.5521  on 21  degrees of freedom"                           
+[20] "  (14 observations deleted due to missingness)"                                 
+[21] "AIC: NA"                                                                        
+[22] ""                                                                               
+[23] "Number of Fisher Scoring iterations: 2"                                         
+[24] ""                                                                               
+[25] "# Check for Multicollinearity"                                                  
+[26] ""                                                                               
+[27] "Low Correlation"                                                                
+[28] ""                                                                               
+[29] "  Term  VIF    VIF 95% CI adj. VIF Tolerance Tolerance 95% CI"                  
+[30] " sst50 1.05 [1.00, 51.28]     1.02      0.95     [0.02, 1.00]"                  
+[31] "  kd50 1.05 [1.00, 51.28]     1.02      0.95     [0.02, 1.00]"                  
+[32] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+--- LAG: lag_4  ---
+
+Model 1 of 1 
+Eq: 4 
+DE: 17.46  | VIF: 0  | Var: kd50 
+Backward: "c1 ~ kd50" 
+
+ [1] "percentile: 50; family:quasi(link=identity); lag:04; eq:04; DE:17.46"           
+ [2] "original:  c1 ~ enso + kd50 "                                                   
+ [3] "backward:  c1 ~ kd50 "                                                          
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "            Estimate Std. Error t value Pr(>|t|)   "                            
+[10] "(Intercept)  -0.4241     0.1212  -3.498  0.00214 **"                            
+[11] "kd50         20.3907     9.6762   2.107  0.04729 * "                            
+[12] "---"                                                                            
+[13] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[14] ""                                                                               
+[15] "(Dispersion parameter for quasi family taken to be 0.3126674)"                  
+[16] ""                                                                               
+[17] "    Null deviance: 7.9545  on 22  degrees of freedom"                           
+[18] "Residual deviance: 6.5660  on 21  degrees of freedom"                           
+[19] "  (15 observations deleted due to missingness)"                                 
+[20] "AIC: NA"                                                                        
+[21] ""                                                                               
+[22] "Number of Fisher Scoring iterations: 2"                                         
+[23] ""                                                                               
+[24] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+--- LAG: lag_7  ---
+
+Model 1 of 1 
+Eq: 4 
+DE: 26.03  | VIF: 0  | Var: kd50 
+Backward: "c1 ~ kd50" 
+
+ [1] "percentile: 50; family:quasi(link=identity); lag:07; eq:04; DE:26.03"           
+ [2] "original:  c1 ~ enso + kd50 "                                                   
+ [3] "backward:  c1 ~ kd50 "                                                          
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "            Estimate Std. Error t value Pr(>|t|)   "                            
+[10] "(Intercept)  -0.4434     0.1274  -3.479  0.00268 **"                            
+[11] "kd50         26.0086    10.3341   2.517  0.02154 * "                            
+[12] "---"                                                                            
+[13] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[14] ""                                                                               
+[15] "(Dispersion parameter for quasi family taken to be 0.3129087)"                  
+[16] ""                                                                               
+[17] "    Null deviance: 7.6143  on 19  degrees of freedom"                           
+[18] "Residual deviance: 5.6324  on 18  degrees of freedom"                           
+[19] "  (18 observations deleted due to missingness)"                                 
+[20] "AIC: NA"                                                                        
+[21] ""                                                                               
+[22] "Number of Fisher Scoring iterations: 2"                                         
+[23] ""                                                                               
+[24] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+--- LAG: lag_8  ---
+
+Model 1 of 2 
+Eq: 4 
+DE: 40.21  | VIF: 0  | Var: kd50 
+Backward: "c1 ~ kd50" 
+
+ [1] "percentile: 50; family:quasi(link=identity); lag:08; eq:04; DE:40.21"           
+ [2] "original:  c1 ~ enso + kd50 "                                                   
+ [3] "backward:  c1 ~ kd50 "                                                          
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "            Estimate Std. Error t value Pr(>|t|)   "                            
+[10] "(Intercept)  -0.4455     0.1200  -3.714  0.00173 **"                            
+[11] "kd50         32.9984     9.7589   3.381  0.00355 **"                            
+[12] "---"                                                                            
+[13] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[14] ""                                                                               
+[15] "(Dispersion parameter for quasi family taken to be 0.2675588)"                  
+[16] ""                                                                               
+[17] "    Null deviance: 7.6077  on 18  degrees of freedom"                           
+[18] "Residual deviance: 4.5485  on 17  degrees of freedom"                           
+[19] "  (19 observations deleted due to missingness)"                                 
+[20] "AIC: NA"                                                                        
+[21] ""                                                                               
+[22] "Number of Fisher Scoring iterations: 2"                                         
+[23] ""                                                                               
+[24] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+Model 2 of 2 
+Eq: 5 
+DE: 25.71  | VIF: 0  | Var: sss50 
+Backward: "c1 ~ sss50" 
+
+ [1] "percentile: 50; family:quasi(link=identity); lag:08; eq:05; DE:25.71"           
+ [2] "original:  c1 ~ enso + sss50 "                                                  
+ [3] "backward:  c1 ~ sss50 "                                                         
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "            Estimate Std. Error t value Pr(>|t|)  "                             
+[10] "(Intercept)  -0.2568     0.1163  -2.207   0.0386 *"                             
+[11] "sss50        -3.0944     1.1478  -2.696   0.0135 *"                             
+[12] "---"                                                                            
+[13] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[14] ""                                                                               
+[15] "(Dispersion parameter for quasi family taken to be 0.2814005)"                  
+[16] ""                                                                               
+[17] "    Null deviance: 7.9545  on 22  degrees of freedom"                           
+[18] "Residual deviance: 5.9094  on 21  degrees of freedom"                           
+[19] "  (15 observations deleted due to missingness)"                                 
+[20] "AIC: NA"                                                                        
+[21] ""                                                                               
+[22] "Number of Fisher Scoring iterations: 2"                                         
+[23] ""                                                                               
+[24] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+--- LAG: lag_9  ---
+
+Model 1 of 1 
+Eq: 4 
+DE: 28.92  | VIF: 0  | Var: kd50 
+Backward: "c1 ~ kd50" 
+
+ [1] "percentile: 50; family:quasi(link=identity); lag:09; eq:04; DE:28.92"           
+ [2] "original:  c1 ~ enso + kd50 "                                                   
+ [3] "backward:  c1 ~ kd50 "                                                          
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "            Estimate Std. Error t value Pr(>|t|)   "                            
+[10] "(Intercept)  -0.4292     0.1352  -3.175  0.00588 **"                            
+[11] "kd50         30.4712    11.9416   2.552  0.02133 * "                            
+[12] "---"                                                                            
+[13] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[14] ""                                                                               
+[15] "(Dispersion parameter for quasi family taken to be 0.3281535)"                  
+[16] ""                                                                               
+[17] "    Null deviance: 7.3871  on 17  degrees of freedom"                           
+[18] "Residual deviance: 5.2505  on 16  degrees of freedom"                           
+[19] "  (20 observations deleted due to missingness)"                                 
+[20] "AIC: NA"                                                                        
+[21] ""                                                                               
+[22] "Number of Fisher Scoring iterations: 2"                                         
+[23] ""                                                                               
+[24] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+--- LAG: lag_10  ---
+
+Model 1 of 1 
+Eq: 5 
+DE: 20.89  | VIF: 0  | Var: sss50 
+Backward: "c1 ~ sss50" 
+
+ [1] "percentile: 50; family:quasi(link=identity); lag:10; eq:05; DE:20.89"           
+ [2] "original:  c1 ~ enso + sss50 "                                                  
+ [3] "backward:  c1 ~ sss50 "                                                         
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "            Estimate Std. Error t value Pr(>|t|)   "                            
+[10] "(Intercept)  -0.6458     0.1690  -3.822  0.00115 **"                            
+[11] "sss50         4.9489     2.2097   2.240  0.03727 * "                            
+[12] "---"                                                                            
+[13] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[14] ""                                                                               
+[15] "(Dispersion parameter for quasi family taken to be 0.3173727)"                  
+[16] ""                                                                               
+[17] "    Null deviance: 7.6220  on 20  degrees of freedom"                           
+[18] "Residual deviance: 6.0301  on 19  degrees of freedom"                           
+[19] "  (17 observations deleted due to missingness)"                                 
+[20] "AIC: NA"                                                                        
+[21] ""                                                                               
+[22] "Number of Fisher Scoring iterations: 2"                                         
+[23] ""                                                                               
+[24] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+>> Percentile: 75 
+--------------------------------------
+
+--- LAG: lag_3  ---
+
+Model 1 of 1 
+Eq: 11 
+DE: 32.09  | VIF: 1.01  | Var: sst75 
+Backward: "c1 ~ sst75 + kd75" 
+
+ [1] "percentile: 75; family:quasi(link=identity); lag:03; eq:11; DE:32.09"           
+ [2] "original:  c1 ~ enso + sst75 + kd75 "                                           
+ [3] "backward:  c1 ~ sst75 + kd75 "                                                  
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "            Estimate Std. Error t value Pr(>|t|)  "                             
+[10] "(Intercept)  -0.2610     0.1109  -2.353   0.0284 *"                             
+[11] "sst75        -0.4953     0.2179  -2.273   0.0337 *"                             
+[12] "kd75         18.8996     7.7840   2.428   0.0243 *"                             
+[13] "---"                                                                            
+[14] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[15] ""                                                                               
+[16] "(Dispersion parameter for quasi family taken to be 0.2877186)"                  
+[17] ""                                                                               
+[18] "    Null deviance: 8.8972  on 23  degrees of freedom"                           
+[19] "Residual deviance: 6.0421  on 21  degrees of freedom"                           
+[20] "  (14 observations deleted due to missingness)"                                 
+[21] "AIC: NA"                                                                        
+[22] ""                                                                               
+[23] "Number of Fisher Scoring iterations: 2"                                         
+[24] ""                                                                               
+[25] "# Check for Multicollinearity"                                                  
+[26] ""                                                                               
+[27] "Low Correlation"                                                                
+[28] ""                                                                               
+[29] "  Term  VIF       VIF 95% CI adj. VIF Tolerance Tolerance 95% CI"               
+[30] " sst75 1.01 [1.00, 4.05e+08]     1.01      0.99     [0.00, 1.00]"               
+[31] "  kd75 1.01 [1.00, 4.05e+08]     1.01      0.99     [0.00, 1.00]"               
+[32] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+--- LAG: lag_7  ---
+
+Model 1 of 1 
+Eq: 4 
+DE: 28.76  | VIF: 0  | Var: kd75 
+Backward: "c1 ~ kd75" 
+
+ [1] "percentile: 75; family:quasi(link=identity); lag:07; eq:04; DE:28.76"           
+ [2] "original:  c1 ~ enso + kd75 "                                                   
+ [3] "backward:  c1 ~ kd75 "                                                          
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "            Estimate Std. Error t value Pr(>|t|)  "                             
+[10] "(Intercept)  -0.3233     0.1247  -2.593   0.0184 *"                             
+[11] "kd75         22.9324     8.5066   2.696   0.0148 *"                             
+[12] "---"                                                                            
+[13] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[14] ""                                                                               
+[15] "(Dispersion parameter for quasi family taken to be 0.3013487)"                  
+[16] ""                                                                               
+[17] "    Null deviance: 7.6143  on 19  degrees of freedom"                           
+[18] "Residual deviance: 5.4243  on 18  degrees of freedom"                           
+[19] "  (18 observations deleted due to missingness)"                                 
+[20] "AIC: NA"                                                                        
+[21] ""                                                                               
+[22] "Number of Fisher Scoring iterations: 2"                                         
+[23] ""                                                                               
+[24] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+--- LAG: lag_8  ---
+
+Model 1 of 2 
+Eq: 4 
+DE: 44.12  | VIF: 0  | Var: kd75 
+Backward: "c1 ~ kd75" 
+
+ [1] "percentile: 75; family:quasi(link=identity); lag:08; eq:04; DE:44.12"           
+ [2] "original:  c1 ~ enso + kd75 "                                                   
+ [3] "backward:  c1 ~ kd75 "                                                          
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "            Estimate Std. Error t value Pr(>|t|)   "                            
+[10] "(Intercept)  -0.2766     0.1186  -2.333  0.03221 * "                            
+[11] "kd75         30.0571     8.2034   3.664  0.00192 **"                            
+[12] "---"                                                                            
+[13] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[14] ""                                                                               
+[15] "(Dispersion parameter for quasi family taken to be 0.2500491)"                  
+[16] ""                                                                               
+[17] "    Null deviance: 7.6077  on 18  degrees of freedom"                           
+[18] "Residual deviance: 4.2508  on 17  degrees of freedom"                           
+[19] "  (19 observations deleted due to missingness)"                                 
+[20] "AIC: NA"                                                                        
+[21] ""                                                                               
+[22] "Number of Fisher Scoring iterations: 2"                                         
+[23] ""                                                                               
+[24] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+Model 2 of 2 
+Eq: 5 
+DE: 18.9  | VIF: 0  | Var: sss75 
+Backward: "c1 ~ sss75" 
+
+ [1] "percentile: 75; family:quasi(link=identity); lag:08; eq:05; DE:18.9"            
+ [2] "original:  c1 ~ enso + sss75 "                                                  
+ [3] "backward:  c1 ~ sss75 "                                                         
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "            Estimate Std. Error t value Pr(>|t|)   "                            
+[10] "(Intercept)  -0.4302     0.1206  -3.568  0.00182 **"                            
+[11] "sss75        -2.7124     1.2259  -2.213  0.03814 * "                            
+[12] "---"                                                                            
+[13] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[14] ""                                                                               
+[15] "(Dispersion parameter for quasi family taken to be 0.3071795)"                  
+[16] ""                                                                               
+[17] "    Null deviance: 7.9545  on 22  degrees of freedom"                           
+[18] "Residual deviance: 6.4508  on 21  degrees of freedom"                           
+[19] "  (15 observations deleted due to missingness)"                                 
+[20] "AIC: NA"                                                                        
+[21] ""                                                                               
+[22] "Number of Fisher Scoring iterations: 2"                                         
+[23] ""                                                                               
+[24] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+--- LAG: lag_9  ---
+
+Model 1 of 1 
+Eq: 15 
+DE: 52.77  | VIF: 1.08  | Var: kd75 
+Backward: "c1 ~ kd75 + wmi75" 
+
+ [1] "percentile: 75; family:quasi(link=identity); lag:09; eq:15; DE:52.77"           
+ [2] "original:  c1 ~ enso + kd75 + wmi75 "                                           
+ [3] "backward:  c1 ~ kd75 + wmi75 "                                                  
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "            Estimate Std. Error t value Pr(>|t|)   "                            
+[10] "(Intercept) -0.32196    0.12376  -2.601  0.02004 * "                            
+[11] "kd75        34.77315    8.85646   3.926  0.00135 **"                            
+[12] "wmi75        0.03282    0.01518   2.162  0.04718 * "                            
+[13] "---"                                                                            
+[14] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[15] ""                                                                               
+[16] "(Dispersion parameter for quasi family taken to be 0.23258)"                    
+[17] ""                                                                               
+[18] "    Null deviance: 7.3871  on 17  degrees of freedom"                           
+[19] "Residual deviance: 3.4887  on 15  degrees of freedom"                           
+[20] "  (20 observations deleted due to missingness)"                                 
+[21] "AIC: NA"                                                                        
+[22] ""                                                                               
+[23] "Number of Fisher Scoring iterations: 2"                                         
+[24] ""                                                                               
+[25] "# Check for Multicollinearity"                                                  
+[26] ""                                                                               
+[27] "Low Correlation"                                                                
+[28] ""                                                                               
+[29] "  Term  VIF    VIF 95% CI adj. VIF Tolerance Tolerance 95% CI"                  
+[30] "  kd75 1.08 [1.00, 12.83]     1.04      0.93     [0.08, 1.00]"                  
+[31] " wmi75 1.08 [1.00, 12.83]     1.04      0.93     [0.08, 1.00]"                  
+[32] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+--- LAG: lag_10  ---
+
+Model 1 of 1 
+Eq: 5 
+DE: 31.27  | VIF: 0  | Var: sss75 
+Backward: "c1 ~ sss75" 
+
+ [1] "percentile: 75; family:quasi(link=identity); lag:10; eq:05; DE:31.27"           
+ [2] "original:  c1 ~ enso + sss75 "                                                  
+ [3] "backward:  c1 ~ sss75 "                                                         
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "            Estimate Std. Error t value Pr(>|t|)   "                            
+[10] "(Intercept)  -0.3358     0.1159  -2.899   0.0092 **"                            
+[11] "sss75         5.5540     1.8889   2.940   0.0084 **"                            
+[12] "---"                                                                            
+[13] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[14] ""                                                                               
+[15] "(Dispersion parameter for quasi family taken to be 0.2757055)"                  
+[16] ""                                                                               
+[17] "    Null deviance: 7.6220  on 20  degrees of freedom"                           
+[18] "Residual deviance: 5.2384  on 19  degrees of freedom"                           
+[19] "  (17 observations deleted due to missingness)"                                 
+[20] "AIC: NA"                                                                        
+[21] ""                                                                               
+[22] "Number of Fisher Scoring iterations: 2"                                         
+[23] ""                                                                               
+[24] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+==============================
+RESPONSE: c2 
+==============================
+
+>> Percentile: 25 
+--------------------------------------
+
+--- LAG: lag_1  ---
+
+Model 1 of 1 
+Eq: 14 
+DE: 46.52  | VIF: 1.16  | Var: kd25 
+Backward: "c2 ~ kd25 + sss25" 
+
+ [1] "percentile: 25; family:quasi(link=identity); lag:01; eq:14; DE:46.52"           
+ [2] "original:  c2 ~ enso + kd25 + sss25 "                                           
+ [3] "backward:  c2 ~ kd25 + sss25 "                                                  
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "            Estimate Std. Error t value Pr(>|t|)    "                           
+[10] "(Intercept)  -0.2965     0.1409  -2.104 0.046537 *  "                           
+[11] "kd25         53.7460    12.4272   4.325 0.000251 ***"                           
+[12] "sss25         2.2674     0.8524   2.660 0.013995 *  "                           
+[13] "---"                                                                            
+[14] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[15] ""                                                                               
+[16] "(Dispersion parameter for quasi family taken to be 0.3573553)"                  
+[17] ""                                                                               
+[18] "    Null deviance: 15.3682  on 25  degrees of freedom"                          
+[19] "Residual deviance:  8.2192  on 23  degrees of freedom"                          
+[20] "  (12 observations deleted due to missingness)"                                 
+[21] "AIC: NA"                                                                        
+[22] ""                                                                               
+[23] "Number of Fisher Scoring iterations: 2"                                         
+[24] ""                                                                               
+[25] "# Check for Multicollinearity"                                                  
+[26] ""                                                                               
+[27] "Low Correlation"                                                                
+[28] ""                                                                               
+[29] "  Term  VIF   VIF 95% CI adj. VIF Tolerance Tolerance 95% CI"                   
+[30] "  kd25 1.16 [1.01, 3.05]     1.08      0.86     [0.33, 0.99]"                   
+[31] " sss25 1.16 [1.01, 3.05]     1.08      0.86     [0.33, 0.99]"                   
+[32] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+>> Percentile: 50 
+--------------------------------------
+>> Percentile: 75 
+--------------------------------------
+
+--- LAG: lag_1  ---
+
+Model 1 of 1 
+Eq: 14 
+DE: 47.96  | VIF: 1.05  | Var: kd75 
+Backward: "c2 ~ kd75 + sss75" 
+
+ [1] "percentile: 75; family:quasi(link=identity); lag:01; eq:14; DE:47.96"           
+ [2] "original:  c2 ~ enso + kd75 + sss75 "                                           
+ [3] "backward:  c2 ~ kd75 + sss75 "                                                  
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "            Estimate Std. Error t value Pr(>|t|)    "                           
+[10] "(Intercept)   0.2708     0.1292   2.095 0.047350 *  "                           
+[11] "kd75         37.0127     8.5096   4.349 0.000236 ***"                           
+[12] "sss75         2.4383     1.0200   2.390 0.025406 *  "                           
+[13] "---"                                                                            
+[14] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[15] ""                                                                               
+[16] "(Dispersion parameter for quasi family taken to be 0.3477156)"                  
+[17] ""                                                                               
+[18] "    Null deviance: 15.3682  on 25  degrees of freedom"                          
+[19] "Residual deviance:  7.9975  on 23  degrees of freedom"                          
+[20] "  (12 observations deleted due to missingness)"                                 
+[21] "AIC: NA"                                                                        
+[22] ""                                                                               
+[23] "Number of Fisher Scoring iterations: 2"                                         
+[24] ""                                                                               
+[25] "# Check for Multicollinearity"                                                  
+[26] ""                                                                               
+[27] "Low Correlation"                                                                
+[28] ""                                                                               
+[29] "  Term  VIF    VIF 95% CI adj. VIF Tolerance Tolerance 95% CI"                  
+[30] "  kd75 1.05 [1.00, 68.20]     1.02      0.96     [0.01, 1.00]"                  
+[31] " sss75 1.05 [1.00, 68.20]     1.02      0.96     [0.01, 1.00]"                  
+[32] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+==============================
+RESPONSE: c3 
+==============================
+
+>> Percentile: 25 
+--------------------------------------
+
+--- LAG: lag_2  ---
+
+Model 1 of 1 
+Eq: 9 
+DE: 38.05  | VIF: 2.72  | Var: riv25:sss25 
+Backward: "c3 ~ riv25 + sss25 + riv25:sss25" 
+
+ [1] "percentile: 25; family:quasi(link=identity); lag:02; eq:09; DE:38.05"           
+ [2] "original:  c3 ~ enso + riv25 + sss25 + riv25:sss25 "                            
+ [3] "backward:  c3 ~ riv25 + sss25 + riv25:sss25 "                                   
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "              Estimate Std. Error t value Pr(>|t|)   "                          
+[10] "(Intercept)  0.4639775  0.1785259   2.599  0.01574 * "                          
+[11] "riv25       -0.0001399  0.0000394  -3.550  0.00163 **"                          
+[12] "sss25       -4.0507504  1.4783968  -2.740  0.01141 * "                          
+[13] "riv25:sss25  0.0008674  0.0003608   2.404  0.02428 * "                          
+[14] "---"                                                                            
+[15] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[16] ""                                                                               
+[17] "(Dispersion parameter for quasi family taken to be 0.4823115)"                  
+[18] ""                                                                               
+[19] "    Null deviance: 18.685  on 27  degrees of freedom"                           
+[20] "Residual deviance: 11.575  on 24  degrees of freedom"                           
+[21] "  (10 observations deleted due to missingness)"                                 
+[22] "AIC: NA"                                                                        
+[23] ""                                                                               
+[24] "Number of Fisher Scoring iterations: 2"                                         
+[25] ""                                                                               
+[26] "# Check for Multicollinearity"                                                  
+[27] ""                                                                               
+[28] "Low Correlation"                                                                
+[29] ""                                                                               
+[30] "        Term  VIF   VIF 95% CI adj. VIF Tolerance Tolerance 95% CI"             
+[31] "       riv25 2.26 [1.56, 3.83]     1.50      0.44     [0.26, 0.64]"             
+[32] "       sss25 1.60 [1.21, 2.73]     1.27      0.62     [0.37, 0.83]"             
+[33] " riv25:sss25 2.72 [1.82, 4.64]     1.65      0.37     [0.22, 0.55]"             
+[34] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+--- LAG: lag_3  ---
+
+Model 1 of 1 
+Eq: 9 
+DE: 43.59  | VIF: 2.9  | Var: riv25:sss25 
+Backward: "c3 ~ riv25 + sss25 + riv25:sss25" 
+
+ [1] "percentile: 25; family:quasi(link=identity); lag:03; eq:09; DE:43.59"           
+ [2] "original:  c3 ~ enso + riv25 + sss25 + riv25:sss25 "                            
+ [3] "backward:  c3 ~ riv25 + sss25 + riv25:sss25 "                                   
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "              Estimate Std. Error t value Pr(>|t|)    "                         
+[10] "(Intercept)  5.622e-01  1.792e-01   3.137 0.004475 ** "                         
+[11] "riv25       -1.024e-04  3.982e-05  -2.571 0.016770 *  "                         
+[12] "sss25       -5.989e+00  1.428e+00  -4.194 0.000322 ***"                         
+[13] "riv25:sss25  8.318e-04  3.490e-04   2.383 0.025433 *  "                         
+[14] "---"                                                                            
+[15] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[16] ""                                                                               
+[17] "(Dispersion parameter for quasi family taken to be 0.4391683)"                  
+[18] ""                                                                               
+[19] "    Null deviance: 18.685  on 27  degrees of freedom"                           
+[20] "Residual deviance: 10.540  on 24  degrees of freedom"                           
+[21] "  (10 observations deleted due to missingness)"                                 
+[22] "AIC: NA"                                                                        
+[23] ""                                                                               
+[24] "Number of Fisher Scoring iterations: 2"                                         
+[25] ""                                                                               
+[26] "# Check for Multicollinearity"                                                  
+[27] ""                                                                               
+[28] "Low Correlation"                                                                
+[29] ""                                                                               
+[30] "        Term  VIF   VIF 95% CI adj. VIF Tolerance Tolerance 95% CI"             
+[31] "       riv25 2.40 [1.64, 4.07]     1.55      0.42     [0.25, 0.61]"             
+[32] "       sss25 1.65 [1.23, 2.81]     1.28      0.61     [0.36, 0.81]"             
+[33] " riv25:sss25 2.90 [1.92, 4.95]     1.70      0.34     [0.20, 0.52]"             
+[34] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+--- LAG: lag_6  ---
+
+Model 1 of 1 
+Eq: 5 
+DE: 29.17  | VIF: 0  | Var: sss25 
+Backward: "c3 ~ sss25" 
+
+ [1] "percentile: 25; family:quasi(link=identity); lag:06; eq:05; DE:29.17"           
+ [2] "original:  c3 ~ enso + sss25 "                                                  
+ [3] "backward:  c3 ~ sss25 "                                                         
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "            Estimate Std. Error t value Pr(>|t|)   "                            
+[10] "(Intercept)   0.4998     0.1872   2.669  0.01369 * "                            
+[11] "sss25        -4.5134     1.4664  -3.078  0.00532 **"                            
+[12] "---"                                                                            
+[13] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[14] ""                                                                               
+[15] "(Dispersion parameter for quasi family taken to be 0.5021536)"                  
+[16] ""                                                                               
+[17] "    Null deviance: 16.307  on 24  degrees of freedom"                           
+[18] "Residual deviance: 11.550  on 23  degrees of freedom"                           
+[19] "  (13 observations deleted due to missingness)"                                 
+[20] "AIC: NA"                                                                        
+[21] ""                                                                               
+[22] "Number of Fisher Scoring iterations: 2"                                         
+[23] ""                                                                               
+[24] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+--- LAG: lag_7  ---
+
+Model 1 of 1 
+Eq: 5 
+DE: 30.03  | VIF: 0  | Var: sss25 
+Backward: "c3 ~ sss25" 
+
+ [1] "percentile: 25; family:quasi(link=identity); lag:07; eq:05; DE:30.03"           
+ [2] "original:  c3 ~ enso + sss25 "                                                  
+ [3] "backward:  c3 ~ sss25 "                                                         
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "            Estimate Std. Error t value Pr(>|t|)   "                            
+[10] "(Intercept)   0.5565     0.1907   2.919  0.00796 **"                            
+[11] "sss25        -4.4954     1.4630  -3.073  0.00557 **"                            
+[12] "---"                                                                            
+[13] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[14] ""                                                                               
+[15] "(Dispersion parameter for quasi family taken to be 0.4842023)"                  
+[16] ""                                                                               
+[17] "    Null deviance: 15.224  on 23  degrees of freedom"                           
+[18] "Residual deviance: 10.652  on 22  degrees of freedom"                           
+[19] "  (14 observations deleted due to missingness)"                                 
+[20] "AIC: NA"                                                                        
+[21] ""                                                                               
+[22] "Number of Fisher Scoring iterations: 2"                                         
+[23] ""                                                                               
+[24] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+--- LAG: lag_8  ---
+
+Model 1 of 1 
+Eq: 5 
+DE: 36.75  | VIF: 0  | Var: sss25 
+Backward: "c3 ~ sss25" 
+
+ [1] "percentile: 25; family:quasi(link=identity); lag:08; eq:05; DE:36.75"           
+ [2] "original:  c3 ~ enso + sss25 "                                                  
+ [3] "backward:  c3 ~ sss25 "                                                         
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "            Estimate Std. Error t value Pr(>|t|)   "                            
+[10] "(Intercept)   0.6816     0.1968   3.464  0.00232 **"                            
+[11] "sss25        -5.1937     1.4870  -3.493  0.00217 **"                            
+[12] "---"                                                                            
+[13] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[14] ""                                                                               
+[15] "(Dispersion parameter for quasi family taken to be 0.4442991)"                  
+[16] ""                                                                               
+[17] "    Null deviance: 14.7507  on 22  degrees of freedom"                          
+[18] "Residual deviance:  9.3303  on 21  degrees of freedom"                          
+[19] "  (15 observations deleted due to missingness)"                                 
+[20] "AIC: NA"                                                                        
+[21] ""                                                                               
+[22] "Number of Fisher Scoring iterations: 2"                                         
+[23] ""                                                                               
+[24] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+>> Percentile: 50 
+--------------------------------------
+>> Percentile: 75 
+--------------------------------------
+
+==============================
+RESPONSE: c4 
+==============================
+
+>> Percentile: 25 
+--------------------------------------
+
+--- LAG: lag_6  ---
+
+Model 1 of 2 
+Eq: 9 
+DE: 36.12  | VIF: 1.05  | Var: riv25 
+Backward: "c4 ~ riv25 + sss25" 
+
+ [1] "percentile: 25; family:quasi(link=identity); lag:06; eq:09; DE:36.12"           
+ [2] "original:  c4 ~ enso + riv25 + sss25 + riv25:sss25 "                            
+ [3] "backward:  c4 ~ riv25 + sss25 "                                                 
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "              Estimate Std. Error t value Pr(>|t|)   "                          
+[10] "(Intercept) -6.589e-01  1.981e-01  -3.327  0.00306 **"                          
+[11] "riv25        7.453e-05  2.797e-05   2.664  0.01416 * "                          
+[12] "sss25        3.966e+00  1.391e+00   2.851  0.00929 **"                          
+[13] "---"                                                                            
+[14] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[15] ""                                                                               
+[16] "(Dispersion parameter for quasi family taken to be 0.4290641)"                  
+[17] ""                                                                               
+[18] "    Null deviance: 14.7777  on 24  degrees of freedom"                          
+[19] "Residual deviance:  9.4394  on 22  degrees of freedom"                          
+[20] "  (13 observations deleted due to missingness)"                                 
+[21] "AIC: NA"                                                                        
+[22] ""                                                                               
+[23] "Number of Fisher Scoring iterations: 2"                                         
+[24] ""                                                                               
+[25] "# Check for Multicollinearity"                                                  
+[26] ""                                                                               
+[27] "Low Correlation"                                                                
+[28] ""                                                                               
+[29] "  Term  VIF    VIF 95% CI adj. VIF Tolerance Tolerance 95% CI"                  
+[30] " riv25 1.05 [1.00, 35.50]     1.03      0.95     [0.03, 1.00]"                  
+[31] " sss25 1.05 [1.00, 35.50]     1.03      0.95     [0.03, 1.00]"                  
+[32] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+Model 2 of 2 
+Eq: 38 
+DE: 26.9  | VIF: 1.1  | Var: sam 
+Backward: "c4 ~ sam + wmi25" 
+
+ [1] "percentile: 25; family:quasi(link=identity); lag:06; eq:38; DE:26.9"             
+ [2] "original:  c4 ~ sam + wmi25 "                                                    
+ [3] "backward:  c4 ~ sam + wmi25 "                                                    
+ [4] ""                                                                                
+ [5] "Call:"                                                                           
+ [6] "glm(formula = formula_full, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                                
+ [8] "Coefficients:"                                                                   
+ [9] "            Estimate Std. Error t value Pr(>|t|)  "                              
+[10] "(Intercept)  0.46668    0.21597   2.161   0.0405 *"                              
+[11] "sam         -0.19909    0.09049  -2.200   0.0373 *"                              
+[12] "wmi25       -0.36861    0.13915  -2.649   0.0138 *"                              
+[13] "---"                                                                             
+[14] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                  
+[15] ""                                                                                
+[16] "(Dispersion parameter for quasi family taken to be 0.5485255)"                   
+[17] ""                                                                                
+[18] "    Null deviance: 18.759  on 27  degrees of freedom"                            
+[19] "Residual deviance: 13.713  on 25  degrees of freedom"                            
+[20] "  (10 observations deleted due to missingness)"                                  
+[21] "AIC: NA"                                                                         
+[22] ""                                                                                
+[23] "Number of Fisher Scoring iterations: 2"                                          
+[24] ""                                                                                
+[25] "# Check for Multicollinearity"                                                   
+[26] ""                                                                                
+[27] "Low Correlation"                                                                 
+[28] ""                                                                                
+[29] "  Term  VIF   VIF 95% CI adj. VIF Tolerance Tolerance 95% CI"                    
+[30] "   sam 1.10 [1.00, 4.92]     1.05      0.91     [0.20, 1.00]"                    
+[31] " wmi25 1.10 [1.00, 4.92]     1.05      0.91     [0.20, 1.00]"                    
+[32] "---------- ######### ----------  "                                               
+
+----------------------------------------------------
+
+--- LAG: lag_8  ---
+
+Model 1 of 1 
+Eq: 2 
+DE: 29.9  | VIF: 1.37  | Var: enso 
+Backward: "c4 ~ enso + riv25" 
+
+ [1] "percentile: 25; family:quasi(link=identity); lag:08; eq:02; DE:29.9"             
+ [2] "original:  c4 ~ enso + riv25 "                                                   
+ [3] "backward:  c4 ~ enso + riv25 "                                                   
+ [4] ""                                                                                
+ [5] "Call:"                                                                           
+ [6] "glm(formula = formula_full, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                                
+ [8] "Coefficients:"                                                                   
+ [9] "              Estimate Std. Error t value Pr(>|t|)   "                           
+[10] "(Intercept) -0.3641949  0.1710920  -2.129  0.04332 * "                           
+[11] "enso        -0.4638889  0.1951501  -2.377  0.02542 * "                           
+[12] "riv25        0.0001010  0.0000321   3.147  0.00423 **"                           
+[13] "---"                                                                             
+[14] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                  
+[15] ""                                                                                
+[16] "(Dispersion parameter for quasi family taken to be 0.5259886)"                   
+[17] ""                                                                                
+[18] "    Null deviance: 18.759  on 27  degrees of freedom"                            
+[19] "Residual deviance: 13.150  on 25  degrees of freedom"                            
+[20] "  (10 observations deleted due to missingness)"                                  
+[21] "AIC: NA"                                                                         
+[22] ""                                                                                
+[23] "Number of Fisher Scoring iterations: 2"                                          
+[24] ""                                                                                
+[25] "# Check for Multicollinearity"                                                   
+[26] ""                                                                                
+[27] "Low Correlation"                                                                 
+[28] ""                                                                                
+[29] "  Term  VIF   VIF 95% CI adj. VIF Tolerance Tolerance 95% CI"                    
+[30] "  enso 1.37 [1.09, 2.53]     1.17      0.73     [0.40, 0.92]"                    
+[31] " riv25 1.37 [1.09, 2.53]     1.17      0.73     [0.40, 0.92]"                    
+[32] "---------- ######### ----------  "                                               
+
+----------------------------------------------------
+
+--- LAG: lag_10  ---
+
+Model 1 of 2 
+Eq: 8 
+DE: 63.35  | VIF: 4.18  | Var: riv25:kd25 
+Backward: "c4 ~ riv25 + kd25 + riv25:kd25" 
+
+ [1] "percentile: 25; family:quasi(link=identity); lag:10; eq:08; DE:63.35"           
+ [2] "original:  c4 ~ enso + riv25 + kd25 + riv25:kd25 "                              
+ [3] "backward:  c4 ~ riv25 + kd25 + riv25:kd25 "                                     
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "              Estimate Std. Error t value Pr(>|t|)    "                         
+[10] "(Intercept) -7.630e-01  1.094e-01  -6.973 9.72e-06 ***"                         
+[11] "riv25        1.037e-05  3.382e-05   0.307   0.7639    "                         
+[12] "kd25        -2.266e+01  1.157e+01  -1.958   0.0721 .  "                         
+[13] "riv25:kd25   8.848e-03  3.632e-03   2.436   0.0300 *  "                         
+[14] "---"                                                                            
+[15] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[16] ""                                                                               
+[17] "(Dispersion parameter for quasi family taken to be 0.1506477)"                  
+[18] ""                                                                               
+[19] "    Null deviance: 5.3440  on 16  degrees of freedom"                           
+[20] "Residual deviance: 1.9584  on 13  degrees of freedom"                           
+[21] "  (21 observations deleted due to missingness)"                                 
+[22] "AIC: NA"                                                                        
+[23] ""                                                                               
+[24] "Number of Fisher Scoring iterations: 2"                                         
+[25] ""                                                                               
+[26] "# Check for Multicollinearity"                                                  
+[27] ""                                                                               
+[28] "Low Correlation"                                                                
+[29] ""                                                                               
+[30] "       Term  VIF   VIF 95% CI adj. VIF Tolerance Tolerance 95% CI"              
+[31] "      riv25 3.90 [2.40, 7.00]     1.98      0.26     [0.14, 0.42]"              
+[32] "       kd25 1.37 [1.09, 2.59]     1.17      0.73     [0.39, 0.92]"              
+[33] " riv25:kd25 4.18 [2.55, 7.51]     2.04      0.24     [0.13, 0.39]"              
+[34] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+Model 2 of 2 
+Eq: 7 
+DE: 41.08  | VIF: 1  | Var: riv25 
+Backward: "c4 ~ riv25 + sst25" 
+
+ [1] "percentile: 25; family:quasi(link=identity); lag:10; eq:07; DE:41.08"           
+ [2] "original:  c4 ~ enso + riv25 + sst25 "                                          
+ [3] "backward:  c4 ~ riv25 + sst25 "                                                 
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "              Estimate Std. Error t value Pr(>|t|)   "                          
+[10] "(Intercept) -3.364e-01  1.472e-01  -2.285   0.0311 * "                          
+[11] "riv25        6.811e-05  2.533e-05   2.688   0.0126 * "                          
+[12] "sst25       -8.187e-01  2.501e-01  -3.274   0.0031 **"                          
+[13] "---"                                                                            
+[14] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[15] ""                                                                               
+[16] "(Dispersion parameter for quasi family taken to be 0.4421147)"                  
+[17] ""                                                                               
+[18] "    Null deviance: 18.759  on 27  degrees of freedom"                           
+[19] "Residual deviance: 11.053  on 25  degrees of freedom"                           
+[20] "  (10 observations deleted due to missingness)"                                 
+[21] "AIC: NA"                                                                        
+[22] ""                                                                               
+[23] "Number of Fisher Scoring iterations: 2"                                         
+[24] ""                                                                               
+[25] "# Check for Multicollinearity"                                                  
+[26] ""                                                                               
+[27] "Low Correlation"                                                                
+[28] ""                                                                               
+[29] "  Term  VIF  VIF 95% CI adj. VIF Tolerance Tolerance 95% CI"                    
+[30] " riv25 1.00 [1.00, Inf]     1.00      1.00     [0.00, 1.00]"                    
+[31] " sst25 1.00 [1.00, Inf]     1.00      1.00     [0.00, 1.00]"                    
+[32] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+>> Percentile: 50 
+--------------------------------------
+
+--- LAG: lag_6  ---
+
+Model 1 of 1 
+Eq: 8 
+DE: 45.98  | VIF: 1.25  | Var: riv50 
+Backward: "c4 ~ riv50 + kd50" 
+
+ [1] "percentile: 50; family:quasi(link=identity); lag:06; eq:08; DE:45.98"           
+ [2] "original:  c4 ~ enso + riv50 + kd50 + riv50:kd50 "                              
+ [3] "backward:  c4 ~ riv50 + kd50 "                                                  
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "              Estimate Std. Error t value Pr(>|t|)   "                          
+[10] "(Intercept) -3.021e-01  1.357e-01  -2.226  0.03904 * "                          
+[11] "riv50        7.511e-05  2.071e-05   3.627  0.00193 **"                          
+[12] "kd50        -3.452e+01  1.172e+01  -2.944  0.00867 **"                          
+[13] "---"                                                                            
+[14] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[15] ""                                                                               
+[16] "(Dispersion parameter for quasi family taken to be 0.3554441)"                  
+[17] ""                                                                               
+[18] "    Null deviance: 11.844  on 20  degrees of freedom"                           
+[19] "Residual deviance:  6.398  on 18  degrees of freedom"                           
+[20] "  (17 observations deleted due to missingness)"                                 
+[21] "AIC: NA"                                                                        
+[22] ""                                                                               
+[23] "Number of Fisher Scoring iterations: 2"                                         
+[24] ""                                                                               
+[25] "# Check for Multicollinearity"                                                  
+[26] ""                                                                               
+[27] "Low Correlation"                                                                
+[28] ""                                                                               
+[29] "  Term  VIF   VIF 95% CI adj. VIF Tolerance Tolerance 95% CI"                   
+[30] " riv50 1.25 [1.04, 2.74]     1.12      0.80     [0.36, 0.96]"                   
+[31] "  kd50 1.25 [1.04, 2.74]     1.12      0.80     [0.36, 0.96]"                   
+[32] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+--- LAG: lag_8  ---
+
+Model 1 of 1 
+Eq: 8 
+DE: 41.07  | VIF: 1.24  | Var: riv50 
+Backward: "c4 ~ riv50 + kd50" 
+
+ [1] "percentile: 50; family:quasi(link=identity); lag:08; eq:08; DE:41.07"           
+ [2] "original:  c4 ~ enso + riv50 + kd50 + riv50:kd50 "                              
+ [3] "backward:  c4 ~ riv50 + kd50 "                                                  
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "              Estimate Std. Error t value Pr(>|t|)   "                          
+[10] "(Intercept) -4.451e-01  1.257e-01  -3.540  0.00272 **"                          
+[11] "riv50        5.962e-05  1.912e-05   3.119  0.00662 **"                          
+[12] "kd50        -2.750e+01  1.128e+01  -2.438  0.02682 * "                          
+[13] "---"                                                                            
+[14] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[15] ""                                                                               
+[16] "(Dispersion parameter for quasi family taken to be 0.2891985)"                  
+[17] ""                                                                               
+[18] "    Null deviance: 7.8526  on 18  degrees of freedom"                           
+[19] "Residual deviance: 4.6272  on 16  degrees of freedom"                           
+[20] "  (19 observations deleted due to missingness)"                                 
+[21] "AIC: NA"                                                                        
+[22] ""                                                                               
+[23] "Number of Fisher Scoring iterations: 2"                                         
+[24] ""                                                                               
+[25] "# Check for Multicollinearity"                                                  
+[26] ""                                                                               
+[27] "Low Correlation"                                                                
+[28] ""                                                                               
+[29] "  Term  VIF   VIF 95% CI adj. VIF Tolerance Tolerance 95% CI"                   
+[30] " riv50 1.24 [1.03, 2.85]     1.11      0.81     [0.35, 0.97]"                   
+[31] "  kd50 1.24 [1.03, 2.85]     1.11      0.81     [0.35, 0.97]"                   
+[32] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+>> Percentile: 75 
+--------------------------------------
+
+--- LAG: lag_6  ---
+
+Model 1 of 2 
+Eq: 21 
+DE: 56.07  | VIF: 1.36  | Var: riv75 
+Backward: "c4 ~ riv75 + kd75 + wmi75" 
+
+ [1] "percentile: 75; family:quasi(link=identity); lag:06; eq:21; DE:56.07"           
+ [2] "original:  c4 ~ enso + riv75 + kd75 + wmi75 + riv75:kd75 "                      
+ [3] "backward:  c4 ~ riv75 + kd75 + wmi75 "                                          
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "              Estimate Std. Error t value Pr(>|t|)    "                         
+[10] "(Intercept) -2.988e-01  1.265e-01  -2.363 0.030315 *  "                         
+[11] "riv75        4.566e-05  1.611e-05   2.834 0.011445 *  "                         
+[12] "kd75        -3.801e+01  9.549e+00  -3.980 0.000968 ***"                         
+[13] "wmi75       -3.989e-02  1.757e-02  -2.270 0.036514 *  "                         
+[14] "---"                                                                            
+[15] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[16] ""                                                                               
+[17] "(Dispersion parameter for quasi family taken to be 0.3060629)"                  
+[18] ""                                                                               
+[19] "    Null deviance: 11.8444  on 20  degrees of freedom"                          
+[20] "Residual deviance:  5.2031  on 17  degrees of freedom"                          
+[21] "  (17 observations deleted due to missingness)"                                 
+[22] "AIC: NA"                                                                        
+[23] ""                                                                               
+[24] "Number of Fisher Scoring iterations: 2"                                         
+[25] ""                                                                               
+[26] "# Check for Multicollinearity"                                                  
+[27] ""                                                                               
+[28] "Low Correlation"                                                                
+[29] ""                                                                               
+[30] "  Term  VIF   VIF 95% CI adj. VIF Tolerance Tolerance 95% CI"                   
+[31] " riv75 1.36 [1.08, 2.55]     1.17      0.73     [0.39, 0.92]"                   
+[32] "  kd75 1.35 [1.08, 2.54]     1.16      0.74     [0.39, 0.92]"                   
+[33] " wmi75 1.17 [1.02, 2.87]     1.08      0.85     [0.35, 0.98]"                   
+[34] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+Model 2 of 2 
+Eq: 8 
+DE: 42.76  | VIF: 1.3  | Var: riv75 
+Backward: "c4 ~ riv75 + kd75" 
+
+ [1] "percentile: 75; family:quasi(link=identity); lag:06; eq:08; DE:42.76"           
+ [2] "original:  c4 ~ enso + riv75 + kd75 + riv75:kd75 "                              
+ [3] "backward:  c4 ~ riv75 + kd75 "                                                  
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "              Estimate Std. Error t value Pr(>|t|)   "                          
+[10] "(Intercept) -3.694e-01  1.360e-01  -2.717  0.01415 * "                          
+[11] "riv75        5.342e-05  1.747e-05   3.059  0.00676 **"                          
+[12] "kd75        -3.366e+01  1.038e+01  -3.243  0.00451 **"                          
+[13] "---"                                                                            
+[14] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[15] ""                                                                               
+[16] "(Dispersion parameter for quasi family taken to be 0.3766667)"                  
+[17] ""                                                                               
+[18] "    Null deviance: 11.844  on 20  degrees of freedom"                           
+[19] "Residual deviance:  6.780  on 18  degrees of freedom"                           
+[20] "  (17 observations deleted due to missingness)"                                 
+[21] "AIC: NA"                                                                        
+[22] ""                                                                               
+[23] "Number of Fisher Scoring iterations: 2"                                         
+[24] ""                                                                               
+[25] "# Check for Multicollinearity"                                                  
+[26] ""                                                                               
+[27] "Low Correlation"                                                                
+[28] ""                                                                               
+[29] "  Term  VIF   VIF 95% CI adj. VIF Tolerance Tolerance 95% CI"                   
+[30] " riv75 1.30 [1.05, 2.69]     1.14      0.77     [0.37, 0.95]"                   
+[31] "  kd75 1.30 [1.05, 2.69]     1.14      0.77     [0.37, 0.95]"                   
+[32] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+--- LAG: lag_7  ---
+
+Model 1 of 2 
+Eq: 8 
+DE: 36.77  | VIF: 1.33  | Var: riv75 
+Backward: "c4 ~ riv75 + kd75" 
+
+ [1] "percentile: 75; family:quasi(link=identity); lag:07; eq:08; DE:36.77"           
+ [2] "original:  c4 ~ enso + riv75 + kd75 + riv75:kd75 "                              
+ [3] "backward:  c4 ~ riv75 + kd75 "                                                  
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "              Estimate Std. Error t value Pr(>|t|)   "                          
+[10] "(Intercept) -4.365e-01  1.483e-01  -2.942  0.00911 **"                          
+[11] "riv75        4.669e-05  1.853e-05   2.520  0.02204 * "                          
+[12] "kd75        -3.322e+01  1.150e+01  -2.887  0.01024 * "                          
+[13] "---"                                                                            
+[14] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[15] ""                                                                               
+[16] "(Dispersion parameter for quasi family taken to be 0.4141159)"                  
+[17] ""                                                                               
+[18] "    Null deviance: 11.135  on 19  degrees of freedom"                           
+[19] "Residual deviance:  7.040  on 17  degrees of freedom"                           
+[20] "  (18 observations deleted due to missingness)"                                 
+[21] "AIC: NA"                                                                        
+[22] ""                                                                               
+[23] "Number of Fisher Scoring iterations: 2"                                         
+[24] ""                                                                               
+[25] "# Check for Multicollinearity"                                                  
+[26] ""                                                                               
+[27] "Low Correlation"                                                                
+[28] ""                                                                               
+[29] "  Term  VIF   VIF 95% CI adj. VIF Tolerance Tolerance 95% CI"                   
+[30] " riv75 1.33 [1.06, 2.71]     1.15      0.75     [0.37, 0.94]"                   
+[31] "  kd75 1.33 [1.06, 2.71]     1.15      0.75     [0.37, 0.94]"                   
+[32] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+Model 2 of 2 
+Eq: 72 
+DE: 51.47  | VIF: 1.88  | Var: riv75 
+Backward: "c4 ~ soi + riv75 + kd75" 
+
+ [1] "percentile: 75; family:quasi(link=identity); lag:07; eq:72; DE:51.47"           
+ [2] "original:  c4 ~ soi + riv75 + kd75 + riv75:kd75 "                               
+ [3] "backward:  c4 ~ soi + riv75 + kd75 "                                            
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "              Estimate Std. Error t value Pr(>|t|)   "                          
+[10] "(Intercept) -5.362e-01  1.414e-01  -3.792  0.00160 **"                          
+[11] "soi          3.064e-01  1.392e-01   2.202  0.04271 * "                          
+[12] "riv75        7.025e-05  1.986e-05   3.537  0.00274 **"                          
+[13] "kd75        -3.255e+01  1.039e+01  -3.131  0.00644 **"                          
+[14] "---"                                                                            
+[15] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[16] ""                                                                               
+[17] "(Dispersion parameter for quasi family taken to be 0.3376927)"                  
+[18] ""                                                                               
+[19] "    Null deviance: 11.1345  on 19  degrees of freedom"                          
+[20] "Residual deviance:  5.4031  on 16  degrees of freedom"                          
+[21] "  (18 observations deleted due to missingness)"                                 
+[22] "AIC: NA"                                                                        
+[23] ""                                                                               
+[24] "Number of Fisher Scoring iterations: 2"                                         
+[25] ""                                                                               
+[26] "# Check for Multicollinearity"                                                  
+[27] ""                                                                               
+[28] "Low Correlation"                                                                
+[29] ""                                                                               
+[30] "  Term  VIF   VIF 95% CI adj. VIF Tolerance Tolerance 95% CI"                   
+[31] "   soi 1.57 [1.18, 2.80]     1.25      0.64     [0.36, 0.85]"                   
+[32] " riv75 1.88 [1.33, 3.30]     1.37      0.53     [0.30, 0.75]"                   
+[33] "  kd75 1.33 [1.07, 2.55]     1.15      0.75     [0.39, 0.93]"                   
+[34] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+--- LAG: lag_8  ---
+
+Model 1 of 3 
+Eq: 8 
+DE: 60.84  | VIF: 2.13  | Var: enso 
+Backward: "c4 ~ enso + riv75 + kd75" 
+
+ [1] "percentile: 75; family:quasi(link=identity); lag:08; eq:08; DE:60.84"           
+ [2] "original:  c4 ~ enso + riv75 + kd75 + riv75:kd75 "                              
+ [3] "backward:  c4 ~ enso + riv75 + kd75 "                                           
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "              Estimate Std. Error t value Pr(>|t|)    "                         
+[10] "(Intercept) -5.111e-01  1.077e-01  -4.747 0.000259 ***"                         
+[11] "enso        -4.198e-01  1.871e-01  -2.243 0.040412 *  "                         
+[12] "riv75        7.567e-05  1.765e-05   4.287 0.000649 ***"                         
+[13] "kd75        -2.253e+01  8.604e+00  -2.618 0.019390 *  "                         
+[14] "---"                                                                            
+[15] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[16] ""                                                                               
+[17] "(Dispersion parameter for quasi family taken to be 0.2050005)"                  
+[18] ""                                                                               
+[19] "    Null deviance: 7.8526  on 18  degrees of freedom"                           
+[20] "Residual deviance: 3.0750  on 15  degrees of freedom"                           
+[21] "  (19 observations deleted due to missingness)"                                 
+[22] "AIC: NA"                                                                        
+[23] ""                                                                               
+[24] "Number of Fisher Scoring iterations: 2"                                         
+[25] ""                                                                               
+[26] "# Check for Multicollinearity"                                                  
+[27] ""                                                                               
+[28] "Low Correlation"                                                                
+[29] ""                                                                               
+[30] "  Term  VIF   VIF 95% CI adj. VIF Tolerance Tolerance 95% CI"                   
+[31] "  enso 2.13 [1.46, 3.74]     1.46      0.47     [0.27, 0.68]"                   
+[32] " riv75 1.94 [1.37, 3.42]     1.39      0.51     [0.29, 0.73]"                   
+[33] "  kd75 1.34 [1.07, 2.56]     1.16      0.75     [0.39, 0.93]"                   
+[34] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+Model 2 of 3 
+Eq: 40 
+DE: 47.7  | VIF: 1.21  | Var: riv75 
+Backward: "c4 ~ riv75 + kd75" 
+
+ [1] "percentile: 75; family:quasi(link=identity); lag:08; eq:40; DE:47.7"            
+ [2] "original:  c4 ~ sam + riv75 + kd75 + riv75:kd75 "                               
+ [3] "backward:  c4 ~ riv75 + kd75 "                                                  
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "              Estimate Std. Error t value Pr(>|t|)    "                         
+[10] "(Intercept) -5.037e-01  1.204e-01  -4.183 0.000703 ***"                         
+[11] "riv75        5.134e-05  1.558e-05   3.295 0.004569 ** "                         
+[12] "kd75        -2.859e+01  9.139e+00  -3.129 0.006476 ** "                         
+[13] "---"                                                                            
+[14] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[15] ""                                                                               
+[16] "(Dispersion parameter for quasi family taken to be 0.25666)"                    
+[17] ""                                                                               
+[18] "    Null deviance: 7.8526  on 18  degrees of freedom"                           
+[19] "Residual deviance: 4.1066  on 16  degrees of freedom"                           
+[20] "  (19 observations deleted due to missingness)"                                 
+[21] "AIC: NA"                                                                        
+[22] ""                                                                               
+[23] "Number of Fisher Scoring iterations: 2"                                         
+[24] ""                                                                               
+[25] "# Check for Multicollinearity"                                                  
+[26] ""                                                                               
+[27] "Low Correlation"                                                                
+[28] ""                                                                               
+[29] "  Term  VIF   VIF 95% CI adj. VIF Tolerance Tolerance 95% CI"                   
+[30] " riv75 1.21 [1.02, 2.97]     1.10      0.83     [0.34, 0.98]"                   
+[31] "  kd75 1.21 [1.02, 2.97]     1.10      0.83     [0.34, 0.98]"                   
+[32] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+Model 3 of 3 
+Eq: 72 
+DE: 60.42  | VIF: 1.61  | Var: riv75 
+Backward: "c4 ~ soi + riv75 + kd75" 
+
+ [1] "percentile: 75; family:quasi(link=identity); lag:08; eq:72; DE:60.42"           
+ [2] "original:  c4 ~ soi + riv75 + kd75 + riv75:kd75 "                               
+ [3] "backward:  c4 ~ soi + riv75 + kd75 "                                            
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "              Estimate Std. Error t value Pr(>|t|)    "                         
+[10] "(Intercept) -5.862e-01  1.145e-01  -5.118 0.000126 ***"                         
+[11] "soi          2.400e-01  1.093e-01   2.195 0.044302 *  "                         
+[12] "riv75        6.899e-05  1.614e-05   4.273 0.000667 ***"                         
+[13] "kd75        -2.825e+01  8.213e+00  -3.440 0.003648 ** "                         
+[14] "---"                                                                            
+[15] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[16] ""                                                                               
+[17] "(Dispersion parameter for quasi family taken to be 0.2072058)"                  
+[18] ""                                                                               
+[19] "    Null deviance: 7.8526  on 18  degrees of freedom"                           
+[20] "Residual deviance: 3.1081  on 15  degrees of freedom"                           
+[21] "  (19 observations deleted due to missingness)"                                 
+[22] "AIC: NA"                                                                        
+[23] ""                                                                               
+[24] "Number of Fisher Scoring iterations: 2"                                         
+[25] ""                                                                               
+[26] "# Check for Multicollinearity"                                                  
+[27] ""                                                                               
+[28] "Low Correlation"                                                                
+[29] ""                                                                               
+[30] "  Term  VIF   VIF 95% CI adj. VIF Tolerance Tolerance 95% CI"                   
+[31] "   soi 1.41 [1.10, 2.61]     1.19      0.71     [0.38, 0.91]"                   
+[32] " riv75 1.61 [1.20, 2.87]     1.27      0.62     [0.35, 0.84]"                   
+[33] "  kd75 1.21 [1.03, 2.69]     1.10      0.83     [0.37, 0.97]"                   
+[34] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+--- LAG: lag_9  ---
+
+Model 1 of 1 
+Eq: 85 
+DE: 63.93  | VIF: 1.76  | Var: riv75 
+Backward: "c4 ~ soi + riv75 + kd75 + wmi75" 
+
+ [1] "percentile: 75; family:quasi(link=identity); lag:09; eq:85; DE:63.93"           
+ [2] "original:  c4 ~ soi + riv75 + kd75 + wmi75 + riv75:kd75 "                       
+ [3] "backward:  c4 ~ soi + riv75 + kd75 + wmi75 "                                    
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "              Estimate Std. Error t value Pr(>|t|)    "                         
+[10] "(Intercept) -5.750e-01  1.245e-01  -4.619 0.000481 ***"                         
+[11] "soi          2.611e-01  1.101e-01   2.371 0.033881 *  "                         
+[12] "riv75        5.014e-05  1.649e-05   3.040 0.009486 ** "                         
+[13] "kd75        -2.288e+01  8.638e+00  -2.649 0.020038 *  "                         
+[14] "wmi75       -3.775e-02  1.452e-02  -2.600 0.021992 *  "                         
+[15] "---"                                                                            
+[16] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[17] ""                                                                               
+[18] "(Dispersion parameter for quasi family taken to be 0.1943678)"                  
+[19] ""                                                                               
+[20] "    Null deviance: 7.0061  on 17  degrees of freedom"                           
+[21] "Residual deviance: 2.5268  on 13  degrees of freedom"                           
+[22] "  (20 observations deleted due to missingness)"                                 
+[23] "AIC: NA"                                                                        
+[24] ""                                                                               
+[25] "Number of Fisher Scoring iterations: 2"                                         
+[26] ""                                                                               
+[27] "# Check for Multicollinearity"                                                  
+[28] ""                                                                               
+[29] "Low Correlation"                                                                
+[30] ""                                                                               
+[31] "  Term  VIF   VIF 95% CI adj. VIF Tolerance Tolerance 95% CI"                   
+[32] "   soi 1.40 [1.11, 2.45]     1.18      0.71     [0.41, 0.90]"                   
+[33] " riv75 1.76 [1.30, 2.96]     1.33      0.57     [0.34, 0.77]"                   
+[34] "  kd75 1.22 [1.04, 2.42]     1.11      0.82     [0.41, 0.97]"                   
+[35] " wmi75 1.18 [1.02, 2.57]     1.09      0.85     [0.39, 0.98]"                   
+[36] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+--- LAG: lag_10  ---
+
+Model 1 of 3 
+Eq: 14 
+DE: 53.85  | VIF: 1.5  | Var: kd75 
+Backward: "c4 ~ enso + kd75 + sss75" 
+
+ [1] "percentile: 75; family:quasi(link=identity); lag:10; eq:14; DE:53.85"            
+ [2] "original:  c4 ~ enso + kd75 + sss75 "                                            
+ [3] "backward:  c4 ~ enso + kd75 + sss75 "                                            
+ [4] ""                                                                                
+ [5] "Call:"                                                                           
+ [6] "glm(formula = formula_full, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                                
+ [8] "Coefficients:"                                                                   
+ [9] "            Estimate Std. Error t value Pr(>|t|)    "                            
+[10] "(Intercept)  -0.7035     0.1250  -5.628 8.23e-05 ***"                            
+[11] "enso          0.3815     0.1511   2.525  0.02535 *  "                            
+[12] "kd75        -26.2979    10.9027  -2.412  0.03137 *  "                            
+[13] "sss75        -5.6398     1.6628  -3.392  0.00482 ** "                            
+[14] "---"                                                                             
+[15] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                  
+[16] ""                                                                                
+[17] "(Dispersion parameter for quasi family taken to be 0.1897194)"                   
+[18] ""                                                                                
+[19] "    Null deviance: 5.3440  on 16  degrees of freedom"                            
+[20] "Residual deviance: 2.4664  on 13  degrees of freedom"                            
+[21] "  (21 observations deleted due to missingness)"                                  
+[22] "AIC: NA"                                                                         
+[23] ""                                                                                
+[24] "Number of Fisher Scoring iterations: 2"                                          
+[25] ""                                                                                
+[26] "# Check for Multicollinearity"                                                   
+[27] ""                                                                                
+[28] "Low Correlation"                                                                 
+[29] ""                                                                                
+[30] "  Term  VIF   VIF 95% CI adj. VIF Tolerance Tolerance 95% CI"                    
+[31] "  enso 1.43 [1.11, 2.64]     1.20      0.70     [0.38, 0.90]"                    
+[32] "  kd75 1.50 [1.14, 2.73]     1.22      0.67     [0.37, 0.87]"                    
+[33] " sss75 1.11 [1.00, 4.52]     1.05      0.90     [0.22, 1.00]"                    
+[34] "---------- ######### ----------  "                                               
+
+----------------------------------------------------
+
+Model 2 of 3 
+Eq: 8 
+DE: 65.43  | VIF: 1.21  | Var: riv75 
+Backward: "c4 ~ riv75 + kd75" 
+
+ [1] "percentile: 75; family:quasi(link=identity); lag:10; eq:08; DE:65.43"           
+ [2] "original:  c4 ~ enso + riv75 + kd75 + riv75:kd75 "                              
+ [3] "backward:  c4 ~ riv75 + kd75 "                                                  
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "              Estimate Std. Error t value Pr(>|t|)    "                         
+[10] "(Intercept) -6.445e-01  1.014e-01  -6.357 1.78e-05 ***"                         
+[11] "riv75        5.763e-05  1.130e-05   5.098 0.000162 ***"                         
+[12] "kd75        -2.266e+01  8.172e+00  -2.773 0.014953 *  "                         
+[13] "---"                                                                            
+[14] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[15] ""                                                                               
+[16] "(Dispersion parameter for quasi family taken to be 0.1319548)"                  
+[17] ""                                                                               
+[18] "    Null deviance: 5.3440  on 16  degrees of freedom"                           
+[19] "Residual deviance: 1.8474  on 14  degrees of freedom"                           
+[20] "  (21 observations deleted due to missingness)"                                 
+[21] "AIC: NA"                                                                        
+[22] ""                                                                               
+[23] "Number of Fisher Scoring iterations: 2"                                         
+[24] ""                                                                               
+[25] "# Check for Multicollinearity"                                                  
+[26] ""                                                                               
+[27] "Low Correlation"                                                                
+[28] ""                                                                               
+[29] "  Term  VIF   VIF 95% CI adj. VIF Tolerance Tolerance 95% CI"                   
+[30] " riv75 1.21 [1.02, 3.03]     1.10      0.83     [0.33, 0.98]"                   
+[31] "  kd75 1.21 [1.02, 3.03]     1.10      0.83     [0.33, 0.98]"                   
+[32] "---------- ######### ----------  "                                              
+
+----------------------------------------------------
+
+Model 3 of 3 
+Eq: 72 
+DE: 76.04  | VIF: 1.62  | Var: riv75 
+Backward: "c4 ~ soi + riv75 + kd75" 
+
+ [1] "percentile: 75; family:quasi(link=identity); lag:10; eq:72; DE:76.04"           
+ [2] "original:  c4 ~ soi + riv75 + kd75 + riv75:kd75 "                               
+ [3] "backward:  c4 ~ soi + riv75 + kd75 "                                            
+ [4] ""                                                                               
+ [5] "Call:"                                                                          
+ [6] "glm(formula = new_formula, family = family, data = data, na.action = na.action)"
+ [7] ""                                                                               
+ [8] "Coefficients:"                                                                  
+ [9] "              Estimate Std. Error t value Pr(>|t|)    "                         
+[10] "(Intercept) -7.091e-01  9.163e-02  -7.738 3.21e-06 ***"                         
+[11] "soi          1.925e-01  8.022e-02   2.399  0.03214 *  "                         
+[12] "riv75        7.132e-05  1.131e-05   6.305 2.72e-05 ***"                         
+[13] "kd75        -2.202e+01  7.066e+00  -3.116  0.00819 ** "                         
+[14] "---"                                                                            
+[15] "Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"                 
+[16] ""                                                                               
+[17] "(Dispersion parameter for quasi family taken to be 0.09849534)"                 
+[18] ""                                                                               
+[19] "    Null deviance: 5.3440  on 16  degrees of freedom"                           
+[20] "Residual deviance: 1.2804  on 13  degrees of freedom"                           
+[21] "  (21 observations deleted due to missingness)"                                 
+[22] "AIC: NA"                                                                        
+[23] ""                                                                               
+[24] "Number of Fisher Scoring iterations: 2"                                         
+[25] ""                                                                               
+[26] "# Check for Multicollinearity"                                                  
+[27] ""                                                                               
+[28] "Low Correlation"                                                                
+[29] ""                                                                               
+[30] "  Term  VIF   VIF 95% CI adj. VIF Tolerance Tolerance 95% CI"                   
+[31] "   soi 1.44 [1.12, 2.65]     1.20      0.70     [0.38, 0.90]"                   
+[32] " riv75 1.62 [1.20, 2.90]     1.27      0.62     [0.34, 0.83]"                   
+[33] "  kd75 1.21 [1.03, 2.70]     1.10      0.82     [0.37, 0.97]"                   
+[34] "---------- ######### ----------  "                                              
+
+----------------------------------------------------

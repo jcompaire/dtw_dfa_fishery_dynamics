@@ -1,0 +1,26 @@
+# --- Quarto & R INTERNAL FILES ---
+.quarto/
+_site/
+**/*.quarto_ipynb
+.Rproj.user/
+.Rhistory
+.Ruserdata
+
+# --- OLDER VERSIONS or BACKUPS FILES ---
+some_backup_files/
+
+# --- HTML OUTPUTS ---
+# Ignore all .html files to keep the root clean
+*.html
+# Exception: allow HTML files in docs/ for GitHub Pages
+!docs/*.html
+
+# --- RData policy ---
+# Ignore all .RData files to keep the root clean
+.RData
+# Exception: Allow .RData files in datasets/ or docs/
+!datasets/*.RData
+!outputs/files/*.RData
+
+# --- Avoid to upload duplicated figures by quarto
+/docs/outputs

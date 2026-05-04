@@ -1,0 +1,32 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  #title: "dtw_dfa_glm_gam"
+  navbar:
+    left:
+      - href: index.qmd
+        text: "Home"
+      - href: 1_dtw_dfa_analyses.qmd # 1st script
+        text: "DTW & DFA analyses"
+      - href: 2_glm_gam_analyses.qmd # 2nd script
+        text: "GLM & GAM analyses"
+
+format:
+  html:
+    theme: journal
+    toc: true
+    toc-location: left
+    code-fold: true
+    code-summary: "Show the code"
+    number-sections: false
+    lang: en
+    #date-format: long
+    date-format: "DD MMM YYYY"
+    embed-resources: true
+
+execute:
+  echo: true
+  message: false
+  warning: false
