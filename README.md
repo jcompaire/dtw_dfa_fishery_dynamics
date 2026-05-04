@@ -25,7 +25,7 @@ This research explores the multiscale environmental drivers affecting fishery dy
 
 To replicate this research locally, you will need R installed along with the Quarto CLI.
 
-Clone the repository: git clone [https://github.com/jcompaire/R/dtw-dfa-fishery-dynamics.git](https://github.com/jcompaire/R/dtw-dfa-fishery-dynamics.git)
+Clone the repository: git clone [https://github.com/jcompaire/dtw_dfa_fishery_dynamics.git](https://github.com/jcompaire/dtw_dfa_fishery_dynamics.git)
 
 Open the project in RStudio or your preferred IDE.
 
