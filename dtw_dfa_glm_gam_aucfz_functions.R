@@ -2846,6 +2846,32 @@ var_contrib_from_full_gam <- function(model_full, digits = 2) {
   return(result)
 }
 
+# --- f(x) to plot quantile-quantile (Q-Q) of residuals ------------------------
+plot_qq <- function(qq_object, upperidx = NULL){
+  if (!is.data.frame(qq_obj)) {stop("qq_obj must be a data.frame")}
+  required_cols <- c("theoretical", "residuals", "lower", "upper")
+  if (!all(required_cols %in% colnames(qq_obj))) {
+    stop(paste("qq_obj must contain the following columns:",
+               paste(required_cols, collapse = ", ")))
+    }
+  if (!is.null(upperidx) && !is.character(upperidx))
+    upperidx <- as.character(upperidx)
+  p <- ggplot(qq_obj, aes(x = theoretical, y = residuals)) +
+    geom_ribbon(aes(ymin = lower, ymax = upper), fill = "gray50", alpha = 0.5) +
+    geom_abline(intercept = 0, slope = sd(qq_obj$residuals), color = "black", linetype = "dashed") +
+    geom_point(size = 2) +
+    theme_tufte() +
+    labs(x = "Theoretical quantiles", y = "Deviance residuals") +
+    theme(
+      axis.line = element_line(colour = "black"),
+      axis.ticks = element_line(colour = "black"),
+      axis.text = element_text(color = "black", size = 12),
+      axis.title = element_text(size = 14, face = "plain"),
+      plot.title = element_text(size = 23, face = "bold", hjust = 0.01, vjust = -4)
+      ) +
+    ggtitle(upperidx)
+  return(p)
+  }
 
 
 # --- f(x) to plot observed vs fitted values -----------------------------------
@@ -3042,7 +3068,7 @@ my_colors <- c(
   "Merluccius hubbsi"         = "#73D055",  # Green (Gadiformes)
   "Macruronus magellanicus"   = "#1B7837",  # Dark Green (Gadiformes)
   "Parona signata"            = "#D95F02",  # Vermillion (Perciformes)
-  "Umbrina canosai"           = "#000066",  # Light Blue (Sciaenidae)
+  "Umbrina canosai"           = "#0000CC",  # Light Blue (Sciaenidae)
   "Cynoscion guatucupa"       = "#104E8B",  # Grey (Sciaenidae)
   "Macrodon atricauda"        = "#B3CDE3",  # Pale Blue (Sciaenidae)
   "Helicolenus dactylopterus" = "#A6761D"   # Brown (Sebastidae)

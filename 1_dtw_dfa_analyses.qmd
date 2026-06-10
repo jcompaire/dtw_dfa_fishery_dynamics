@@ -254,7 +254,7 @@ invisible(dev.off())
 if (knitr::is_html_output()) {
   print(plot_cvi(cvi_df))
   cat("\n\n")
-  cat("**Figure 2 .-** Score for Dunn index.")
+  cat("**Figure 2 .-** Score for Dunn index. ")
   cat(paste("Number of optimal clusters (k) = 4."))
   cat("\n\n---\n\n")
   }
@@ -706,8 +706,6 @@ if (knitr::is_html_output()) {
   draw_fit_plots()
   cat("\n\n**Figure 7.-** Observed (dots), fitted (black lines) and pointwise 95% confidence intervals (grey lines) obtained by the dynamic factor model containing three common trends for each species. Note: values are unitless. \n\n")
 }
-
-
 ```
 
 ------------------------------------------------------------------------

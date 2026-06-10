@@ -1,5 +1,6 @@
 ::: {.callout-note appearance="simple"}
-### **Jesus C. Compaire** \| {{< fa fish >}} {{< fa fish >}} {{< fa fish >}} | [{{< fa envelope >}}](mailto:jesus.canocompaire@uca.es) \| [{{< fa brands github >}}](https://github.com/jcompaire)
+### **Jesus C. Compaire** \| {{< fa fish >}} {{< fa fish >}} {{< fa fish >}} \| [{{< fa envelope >}}](mailto:jesus.canocompaire@uca.es) \| [{{< fa brands github >}}](https://github.com/jcompaire)
+
 Assistant Researcher - **CESIMAR (CONICET)** \| Assistant Professor - **UNPSJB**
 :::
 
@@ -141,7 +142,7 @@ glm_dtw_results <- run_glms_nested(
 ## Save summaries of significant models
 
 ```{r}
-outfile <- paste0(out_dir_files, '/SupplementaryMaterial_S12_GLMs_DTW.txt')
+outfile <- paste0(out_dir_files, '/SupplementaryTable_S1_GLMs_DTW.txt')
 sink(outfile, append = FALSE)
 print_glm_nested_results(glm_dtw_results)
 sink()
@@ -179,7 +180,7 @@ glm_dfa_results <- run_glms_nested(
 ## Save summaries of significant models
 
 ```{r}
-outfile <- paste0(out_dir_files, '/SupplementaryMaterial_S13_GLMs_DFA.txt')
+outfile <- paste0(out_dir_files, '/SupplementaryTable_S2_GLMs_DFA.txt')
 sink(outfile, append = FALSE)
 print_glm_nested_results(glm_dfa_results)
 sink()
@@ -323,6 +324,10 @@ summary(model_dtw)
 de_dtw <- round((1 - model_dtw[["deviance"]] / model_dtw[["null.deviance"]]) * 100, digits = 2)
 check_collinearity(model_dtw)
 shapiro.test(model_dtw$residuals)
+# QQ-plot of residuals
+qq_obj <- as.data.frame(gratia::qq_plot(model_dtw)[1][["data"]])
+qqplot_glm_c1 <- plot_qq(qq_obj, "A")
+# Contribution of each variable
 var_contrib_from_full(model_dtw)
 # --- Centroid 2
 cat("\n\n =============== Centroid 2 ===============")
@@ -334,6 +339,10 @@ summary(model_dtw)
 de_dtw <- round((1 - model_dtw[["deviance"]] / model_dtw[["null.deviance"]]) * 100, digits = 2)
 check_collinearity(model_dtw)
 shapiro.test(model_dtw$residuals)
+# QQ-plot of residuals
+qq_obj <- as.data.frame(gratia::qq_plot(model_dtw)[1][["data"]])
+qqplot_glm_c2 <- plot_qq(qq_obj, "B")
+# Contribution of each variable
 var_contrib_from_full(model_dtw)
 # Figure 
 effects_dtw_glm <- compute_glm_all_effects(model_dtw)
@@ -381,6 +390,10 @@ summary(model_dtw)
 de_dtw <- round((1 - model_dtw[["deviance"]] / model_dtw[["null.deviance"]]) * 100, digits = 2)
 check_collinearity(model_dtw)
 shapiro.test(model_dtw$residuals)
+# QQ-plot of residuals
+qq_obj <- as.data.frame(gratia::qq_plot(model_dtw)[1][["data"]])
+qqplot_glm_c3 <- plot_qq(qq_obj, "C")
+# Contribution of each variable
 var_contrib_from_full(model_dtw)
 # Figure
 # --- GLM single variables 
@@ -465,8 +478,11 @@ summary(model_dtw)
 de_dtw <- round((1 - model_dtw[["deviance"]] / model_dtw[["null.deviance"]]) * 100, digits = 2)
 check_collinearity(model_dtw)
 shapiro.test(model_dtw$residuals)
+# QQ-plot of residuals
+qq_obj <- as.data.frame(gratia::qq_plot(model_dtw)[1][["data"]])
+qqplot_glm_c4 <- plot_qq(qq_obj, "D")
+# Contribution of each variable
 var_contrib_from_full(model_dtw)
-
 # Checking model residuals for DFA with highest DE, and plotting
 # --- State 1
 cat("\n\n =============== Common hidden trend 1 ===============")
@@ -478,6 +494,10 @@ summary(model_dfa)
 round((1 - model_dfa[["deviance"]] / model_dfa[["null.deviance"]]) * 100, digits = 2)
 check_collinearity(model_dfa)
 shapiro.test(model_dfa$residuals)
+# QQ-plot of residuals
+qq_obj <- as.data.frame(gratia::qq_plot(model_dfa)[1][["data"]])
+qqplot_glm_s1 <- plot_qq(qq_obj, "E")
+# Contribution of each variable
 (var_contrib_from_full(model_dfa))
 # --- State 2
 cat("\n\n =============== Common hidden trend 2 ===============")
@@ -489,6 +509,10 @@ summary(model_dfa)
 round((1 - model_dfa[["deviance"]] / model_dfa[["null.deviance"]]) * 100, digits = 2)
 check_collinearity(model_dfa)
 shapiro.test(model_dfa$residuals)
+# QQ-plot of residuals
+qq_obj <- as.data.frame(gratia::qq_plot(model_dfa)[1][["data"]])
+qqplot_glm_s2 <- plot_qq(qq_obj, "F")
+# Contribution of each variable
 (var_contrib_from_full(model_dfa))
 # Figure
 effects_dfa_glm <- compute_glm_all_effects(model_dfa)
@@ -536,6 +560,10 @@ summary(model_dfa)
 round((1 - model_dfa[["deviance"]] / model_dfa[["null.deviance"]]) * 100, digits = 2)
 check_collinearity(model_dfa)
 shapiro.test(model_dfa$residuals)
+# QQ-plot of residuals
+qq_obj <- as.data.frame(gratia::qq_plot(model_dfa)[1][["data"]])
+qqplot_glm_s3 <- plot_qq(qq_obj, "G")
+# Contribution of each variable
 (var_contrib_from_full(model_dfa))
 # Figure 
 effects_dfa_glm <- compute_glm_all_effects(model_dfa)
@@ -575,6 +603,39 @@ save(plot_GLM_s3,
   file = paste0(out_dir_files, '/Fig_9_FGHI_s3_GLM.RData')
   )
 ```
+
+## QQ-plots used to evaluate residuals normality for GLMs
+
+```{r, results = 'asis', fig.width=12, fig.height=9}
+# Final QQ-plot for GLMs
+qq_final_plot_glm <- (
+  qqplot_glm_c1 + qqplot_glm_c2 + qqplot_glm_c3 + qqplot_glm_c4 +
+    qqplot_glm_s1 + qqplot_glm_s2 + qqplot_glm_s3
+  ) +
+  plot_layout(design = "
+              1234
+              567#") 
+# Save figure
+file_path <- file.path(out_dir_fig, "Fig_S10")
+# --- as PDF
+pdf(paste0(file_path, ".pdf"), width = 12, height = 9, colormodel = "cmyk")
+par(mfcol=c(1,1))
+qq_final_plot_glm
+grid::grid.draw(qq_final_plot_glm)
+invisible(dev.off())
+# --- as PNG
+ragg::agg_png(paste0(file_path, ".png"), width = 12, height = 9, units = "in", res = 600)
+grid::grid.draw(qq_final_plot_glm)
+invisible(dev.off())
+# HTML output
+file_png <- paste0(file_path,".png")
+if (knitr::is_html_output() && file.exists(file_png)) {
+  knitr::include_graphics(file_png)
+}
+```
+**Figure S10.-** Quantile-quantile (QQ) plots of residuals for the selected GLM models. Panels (A – D) correspond to the fitted models for Centroid 1 to 4 derived from the Dynamic Time Warping (DTW) analysis, and panels E – G for Common hidden trends 1 to 3  derived from the Dynamic Factor (DFA) analysis, respectively.
+
+*While minor deviations in the extreme quantiles may be observed in panels D and G, both figures display strong fits along the central quantiles, suggesting that the errors are approximately normally distributed. Such deviations are expected in high-variability environmental and fisheries datasets and do not indicate systematic bias. The consistent results from the Shapiro–Wilk test and the well-behaved central quantiles in the QQ-plots support the validity of the normality assumption for model errors.*
 
 # **GAMs analyses for i) DTW-centroids and ii) DFA-states**
 
@@ -663,7 +724,7 @@ gam_dtw_results <- run_gams_nested(
 ## Save summaries of significant models
 
 ```{r}
-outfile <- paste0(out_dir_files, '/SupplementaryMaterial_S14_GAMs_DTW.txt')
+outfile <- paste0(out_dir_files, '/SupplementaryTable_S3_GAMs_DTW.txt')
 sink(outfile, append = FALSE)
 print_gam_nested_results(gam_dtw_results)
 sink()
@@ -693,7 +754,7 @@ gam_dfa_results <- run_gams_nested(
 ## Save summaries of significant models
 
 ```{r}
-outfile <- paste0(out_dir_files, '/SupplementaryMaterial_S15_GAMs_DFA.txt')
+outfile <- paste0(out_dir_files, '/SupplementaryTable_S4_GAMs_DFA.txt')
 sink(outfile, append = FALSE)
 print_gam_nested_results(gam_dfa_results)
 sink()
@@ -758,7 +819,7 @@ s75 <- plot_de_lag_annotated(stat_th75, "75th", "C", show_legend = TRUE, fill_la
 
 # Merging plots into a single one and export it as PDF
 # Centroids
-file_path <- file.path(out_dir_fig, "Fig_S10")
+file_path <- file.path(out_dir_fig, "Fig_S11")
 # --- as PDF
 pdf(paste0(file_path, ".pdf"), width = 12, height = 9, colormodel = "cmyk")
 par(mfcol=c(1,1))
@@ -786,11 +847,11 @@ invisible(dev.off())
 if (knitr::is_html_output()) {
   cat("\n\n")
   print(f_dtw)
-  cat("\n\n**Figure S10.-** Average (triangles) and maximum (bars) deviance explained (%) by GAMs for the DTW-derived centroids 1-4 at different time lags (from 0 to 10 years). Numbers above the bars indicate the count of significant models for each specific lag. \n\n")
+  cat("\n\n**Figure S11.-** Average (triangles) and maximum (bars) deviance explained (%) by GAMs for the DTW-derived centroids 1-4 at different time lags (from 0 to 10 years). Numbers above the bars indicate the count of significant models for each specific lag. \n\n")
 }
 
 # States
-file_path <- file.path(out_dir_fig, "Fig_S11")
+file_path <- file.path(out_dir_fig, "Fig_S12")
 # --- as PDF
 pdf(paste0(file_path, ".pdf"), width = 12, height = 9, colormodel = "cmyk")
 par(mfcol=c(1,1))
@@ -818,7 +879,7 @@ invisible(dev.off())
 if (knitr::is_html_output()) {
   cat("\n\n")
   print(f_dtw)
-  cat("\n\n**Figure S11.-** Average (triangles) and maximum (bars) deviance explained (%) by GAMs for the DFA-derived common hidden trends at different time lags (from 0 to 10 years). Numbers above the bars indicate the count of significant models for each specific lag.\n\n\n\n
+  cat("\n\n**Figure S12.-** Average (triangles) and maximum (bars) deviance explained (%) by GAMs for the DFA-derived common hidden trends at different time lags (from 0 to 10 years). Numbers above the bars indicate the count of significant models for each specific lag.\n\n\n\n
   To get the estimated parameters of the explanatory variables presented in Table 3 it is necessary to check the results saved in 'gam_dtw_results' and 'gam_dfa_results.'")
 }
 ```
@@ -839,6 +900,10 @@ summary(model_dtw)
 de_dtw <- round((1 - model_dtw[["deviance"]] / model_dtw[["null.deviance"]]) * 100, digits = 2)
 concurvity(model_dtw)
 shapiro.test(model_dtw$residuals)
+# QQ-plot of residuals
+qq_obj <- as.data.frame(gratia::qq_plot(model_dtw)[1][["data"]])
+qqplot_gam_c1 <- plot_qq(qq_obj, "A")
+# Contribution of each variable
 var_contrib_from_full_gam(model_dtw)
 # Figure 
 vrs <- names(model_dtw[["var.summary"]]) # 
@@ -878,6 +943,10 @@ summary(model_dtw)
 de_dtw <- round((1 - model_dtw[["deviance"]] / model_dtw[["null.deviance"]]) * 100, digits = 2)
 concurvity(model_dtw)
 shapiro.test(model_dtw$residuals)
+# QQ-plot of residuals
+qq_obj <- as.data.frame(gratia::qq_plot(model_dtw)[1][["data"]])
+qqplot_gam_c4 <- plot_qq(qq_obj, "B")
+# Contribution of each variable
 var_contrib_from_full_gam(model_dtw)
 # Figure 
 vrs <- names(model_dtw[["var.summary"]]) # 
@@ -919,6 +988,10 @@ summary(model_dfa)
 de_dfa <- round((1 - model_dfa[["deviance"]] / model_dfa[["null.deviance"]]) * 100, digits = 2)
 concurvity(model_dfa)
 shapiro.test(model_dfa$residuals)
+# QQ-plot of residuals
+qq_obj <- as.data.frame(gratia::qq_plot(model_dfa)[1][["data"]])
+qqplot_gam_s1 <- plot_qq(qq_obj, "C")
+# Contribution of each variable
 var_contrib_from_full_gam(model_dfa)
 # Figure
 vrs <- names(model_dfa[["var.summary"]]) # 
@@ -958,6 +1031,10 @@ summary(model_dfa)
 de_dfa <- round((1 - model_dfa[["deviance"]] / model_dfa[["null.deviance"]]) * 100, digits = 2)
 concurvity(model_dfa)
 shapiro.test(model_dfa$residuals)
+# QQ-plot of residuals
+qq_obj <- as.data.frame(gratia::qq_plot(model_dfa)[1][["data"]])
+qqplot_gam_s2 <- plot_qq(qq_obj, "D")
+# Contribution of each variable
 var_contrib_from_full_gam(model_dfa)
 # --- State 3
 cat("\n\n =============== Common hidden trend 3 ===============")
@@ -970,9 +1047,44 @@ summary(model_dfa)
 de_dfa <- round((1 - model_dfa[["deviance"]] / model_dfa[["null.deviance"]]) * 100, digits = 2)
 concurvity(model_dfa)
 shapiro.test(model_dfa$residuals)
+# QQ-plot of residuals
+qq_obj <- as.data.frame(gratia::qq_plot(model_dfa)[1][["data"]])
+qqplot_gam_s3 <- plot_qq(qq_obj, "E")
+# Contribution of each variable
 var_contrib_from_full_gam(model_dfa)
-
 ```
+
+## QQ-plots used to evaluate residuals normality for GAMs
+
+```{r, results = 'asis', fig.width=12, fig.height=9}
+# Final QQ-plot for GAMs
+qq_final_plot_gam <- (
+  qqplot_gam_c1 + qqplot_gam_c4 + qqplot_gam_s1 + qqplot_gam_s2 + qqplot_gam_s3
+  ) +
+  plot_layout(design = "
+              12#
+              345")
+# Save figure
+file_path <- file.path(out_dir_fig, "Fig_S13")
+# --- as PDF
+pdf(paste0(file_path, ".pdf"), width = 12, height = 9, colormodel = "cmyk")
+par(mfcol=c(1,1))
+qq_final_plot_gam
+grid::grid.draw(qq_final_plot_gam)
+invisible(dev.off())
+# --- as PNG
+ragg::agg_png(paste0(file_path, ".png"), width = 12, height = 9, units = "in", res = 600)
+grid::grid.draw(qq_final_plot_gam)
+invisible(dev.off())
+# HTML output
+file_png <- paste0(file_path,".png")
+if (knitr::is_html_output() && file.exists(file_png)) {
+  knitr::include_graphics(file_png)
+}
+```
+**Figure S13.-** Quantile-quantile (QQ) plots of residuals for the selected GAM models. Panels (A – B) correspond to the fitted models for Centroid 1 and 4 derived from the Dynamic Time Warping (DTW) analysis, and panels C – E for Common hidden trends 1 to 3  derived from the Dynamic Factor (DFA) analysis, respectively.
+
+*While minor deviations in the extreme quantiles may be observed in panels B and C, both figures display strong fits along the central quantiles, suggesting that the errors are approximately normally distributed. Such deviations are expected in high-variability environmental and fisheries datasets and do not indicate systematic bias. The consistent results from the Shapiro–Wilk test and the well-behaved central quantiles in the QQ-plots support the validity of the normality assumption for model errors.*
 
 # **Response plots of explanatory variables retained in the best-fitting GLM and GAM models for both centroids (Figure 8) and common hidden trends (Figure 9)**
 
