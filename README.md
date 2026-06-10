@@ -1,4 +1,5 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20627098.svg)](https://doi.org/10.5281/zenodo.20627098)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.20627098-blue.svg)](https://doi.org/10.5281/zenodo.20627098)
 
 ## An R repository for running Dynamic Time Warping (DTW), Dynamic Factor Analysis (DFA), Generalized Linear Models (GLMs) and Generalized Additive Models (GAMs) to evaluate Multiscale Environmental Forcing of Multispecies Fishery Dynamics ##
 
