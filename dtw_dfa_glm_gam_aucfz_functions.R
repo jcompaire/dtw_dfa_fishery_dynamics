@@ -1250,7 +1250,7 @@ print_glm_nested_results <- function(glm_result) {
             cat("Backward:", glms_summary_final_first$backward[i], "\n\n")
             
             # Print summary
-            print(glms_summary_final_first$summary[[i]])
+            cat(glms_summary_final_first$summary[[i]], sep = "\n")
             cat("\n----------------------------------------------------\n")
           }
         }
